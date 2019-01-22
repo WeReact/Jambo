@@ -172,7 +172,14 @@ class CourseScreen extends Component {
 	render() {
 		const { courses } = this.state;
 		if (!courses) {
-			return <Spinner open={true} disableOnPressSpinner />;
+			return (
+				<Spinner
+					open={true}
+					disableOnPressSpinner
+					containerLoadingStyle={{ backgroundColor: Colors.snow, opacity: 1 }}
+					loadingColor={Colors.orangeAccent}
+				/>
+			);
 		}
 		return (
 			<View style={styles.mainContainer}>
