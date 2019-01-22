@@ -1,4 +1,4 @@
-package com.jambo;
+package br.com.jambo;
 
 import android.app.Application;
 
