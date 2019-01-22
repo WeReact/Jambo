@@ -9,8 +9,8 @@ import {
 	Linking
 } from 'react-native';
 import { Images, Colors } from '../Themes';
+import { NavigationBar } from '../Components';
 import axios from 'axios';
-import { RandomColor } from '../Lib/Utils';
 
 // Styles
 import styles from './Styles/NewsScreenStyles';
@@ -47,7 +47,7 @@ class NewsScreen extends Component {
 						}
 					]}
 				>
-					{'News'}
+					{'Notícias'}
 				</Text>
 			</View>
 		)
@@ -183,15 +183,7 @@ class NewsScreen extends Component {
 		const { navigation } = this.props;
 		return (
 			<View style={styles.mainContainer}>
-				<View style={styles.wrapperSectionTitle}>
-					<Text
-						numberOfLines={2}
-						ellipsizeMode={'tail'}
-						style={styles.sectionTitleStyle}
-					>
-						{'News'}
-					</Text>
-				</View>
+				<NavigationBar title={'Notícias'} />
 				<ScrollView style={styles.container}>
 					<View style={styles.wrapperContent}>{this._renderNewsList()}</View>
 				</ScrollView>

@@ -102,8 +102,7 @@ export default StyleSheet.create({
 		marginRight: 20
 	},
 	wrapperSectionTitle: {
-		paddingBottom: 10,
-		marginTop: 40,
+		marginTop: 17,
 		marginLeft: 20,
 		marginRight: 20,
 		flexDirection: 'row',

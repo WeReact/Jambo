@@ -26,15 +26,17 @@ class NavigationBar extends Component {
 			title
 		} = this.props;
 		return (
-			<View style={styles.container}>
-				<View style={styles.leftActionWrapper}>{onPressBack()}</View>
-				<View style={styles.wrapper}>
-					<View style={styles.content}>
-						<View style={styles.wrapperBar}>
-							<View style={styles.barStyle} />
+			<View style={[styles.container, NavigationBarStyle]}>
+				<View style={[styles.leftActionWrapper, onPressBackStyle]}>
+					{onPressBack()}
+				</View>
+				<View style={[styles.wrapper, wrapperNavigationBarStyle]}>
+					<View style={[styles.content, contentNavigationBarStyle]}>
+						<View style={[styles.wrapperBar, wrapperBarStyle]}>
+							<View style={[styles.barStyle, barStyle]} />
 						</View>
-						<View style={styles.wrapperTitle}>
-							<Text style={styles.titleStyle}>{title}</Text>
+						<View style={[styles.wrapperTitle, wrapperTitleStyle]}>
+							<Text style={[styles.titleStyle, titleStyle]}>{title}</Text>
 						</View>
 					</View>
 				</View>

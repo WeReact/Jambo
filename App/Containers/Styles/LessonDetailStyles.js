@@ -144,7 +144,7 @@ export default StyleSheet.create({
 	},
 	buttonAbsolute: {
 		position: 'absolute',
-		top: 40,
+		top: 17,
 		left: 20
 	},
 	subTitleStyle: {

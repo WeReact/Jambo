@@ -8,6 +8,7 @@ import {
 	FlatList
 } from 'react-native';
 import { Images, Colors } from '../Themes';
+import { NavigationBar } from '../Components';
 import { Button, FlashCard, Spinner } from '../Components/Common';
 import { RandomColor } from '../Lib/Utils';
 
@@ -29,14 +30,14 @@ class ListLessonsScreen extends Component {
 		};
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		const { navigation } = this.props;
 		const { state } = navigation;
 		const { params } = state;
 		const { item } = params;
 		const quiz = item.quiz.questions;
 		const score_minimo = item.quiz.score_minimo;
-		this.setState({quiz, score_minimo})
+		this.setState({ quiz, score_minimo });
 	}
 
 	/**
@@ -147,38 +148,32 @@ class ListLessonsScreen extends Component {
 		const { navigation } = this.props;
 		const { state } = navigation;
 		const { params } = state;
-		if (!params && !params.item ){
-			return (
-				<Spinner
-					open={true}
-					disableOnPressSpinner
-				/>
-			)
+		if (!params && !params.item) {
+			return <Spinner open={true} disableOnPressSpinner />;
 		}
 		const { item } = params;
 		const aulas = item.aulas;
 		return (
 			<View style={styles.mainContainer}>
-				<View style={styles.wrapperSectionTitle}>
-					<TouchableOpacity
-						style={styles.wrapperHeaderLeft}
-						onPress={() => {
-							navigation.goBack();
-						}}
-					>
-						<Image
-							style={styles.iconArrowLeft}
-							source={Images.iconArrowLeftOrange}
-							resizeMode={'contain'}
-						/>
-					</TouchableOpacity>
-					<Text
-						numberOfLines={2}
-						ellipsizeMode={'tail'}
-						style={styles.sectionTitleStyle}
-					>
-						{'Aulas'}
-					</Text>
+				<View>
+					<View style={styles.wrapperSectionTitle}>
+						<TouchableOpacity
+							style={styles.wrapperHeaderLeft}
+							onPress={() => {
+								navigation.goBack();
+							}}
+						>
+							<Image
+								style={styles.iconArrowLeft}
+								source={Images.iconArrowLeftOrange}
+								resizeMode={'contain'}
+							/>
+						</TouchableOpacity>
+					</View>
+					<NavigationBar
+						title={'Aulas'}
+						NavigationBarStyle={{ height: 50, marginLeft: 8, marginRight: 20 }}
+					/>
 				</View>
 				<ScrollView style={styles.container}>
 					<View style={styles.wrapperContent}>
@@ -203,9 +198,7 @@ class ListLessonsScreen extends Component {
 							onPressOutside={() => this._handleCloseQuiz()}
 						/>
 					}
-					{
-						<Spinner />
-					}
+					{<Spinner />}
 				</ScrollView>
 			</View>
 		);

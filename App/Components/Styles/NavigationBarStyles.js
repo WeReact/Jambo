@@ -7,7 +7,7 @@ export default StyleSheet.create({
 		height: 75,
 		flexDirection: 'column',
 		justifyContent: 'flex-end',
-		marginBottom: 50
+		marginBottom: 25
 	},
 	leftActionWrapper: {
 		flex: 0.5,
