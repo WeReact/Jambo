@@ -1,60 +1,39 @@
 const type = {
 	base: 'Avenir-Book',
-	medium: 'Avenir-Medium',
 	bold: 'Avenir-Black',
-	alternate: 'ProximaNova-Regular'
+	emphasis: 'HelveticaNeue-Italic'
 };
 
 const size = {
-	h1: 24,
-	h2: 14,
-	h4: 12,
-	body: 13,
-	storybook: 18,
-	tag: 10,
-	input: 16
+	h1: 38,
+	h2: 34,
+	h3: 30,
+	h4: 26,
+	h5: 20,
+	h6: 19,
+	input: 18,
+	regular: 17,
+	medium: 14,
+	small: 12,
+	tiny: 8.5
 };
 
 const style = {
-	h1: {
-		fontFamily: type.bold,
-		fontSize: size.h1
-	},
-	h2: {
-		fontFamily: type.bold,
-		fontSize: size.h2
-	},
-	h3: {
-		fontFamily: type.base,
-		fontSize: size.h2
-	},
-	h4: {
-		fontFamily: type.base,
-		fontSize: size.h4
-	},
-	body: {
-		fontFamily: type.alternate,
-		fontSize: size.body
-	},
-	storybook: {
-		fontFamily: type.medium,
-		fontSize: size.storybook,
-		fontWeight: '500'
-	},
-	storybookLabel: {
-		fontFamily: type.alternate,
-		fontSize: size.regular
-	},
-	tag: {
-		fontFamily: type.base,
-		fontSize: size.tag
-	},
 	input: {
-		fontFamily: type.base
-	},
-	numberControl: {
 		fontFamily: type.base,
-		fontSize: size.input
+		fontSize: size.medium
+	},
+	inputLabel: {
+		fontFamily: type.bold,
+		fontSize: size.medium
+	},
+	button: {
+		fontFamily: type.base,
+		fontSize: size.medium
+	},
+	navBar: {
+		fontFamily: type.base,
+		fontSize: size.regular
 	}
 };
 
