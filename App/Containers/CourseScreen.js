@@ -12,6 +12,7 @@ import firebase from '@firebase/app';
 import '@firebase/auth';
 import '@firebase/database';
 import { Images, Colors } from '../Themes';
+import { NavigationBar } from '../Components';
 import { Spinner, Button } from '../Components/Common';
 // Styles
 import styles from './Styles/CourseScreenStyles';
@@ -183,15 +184,7 @@ class CourseScreen extends Component {
 		}
 		return (
 			<View style={styles.mainContainer}>
-				<View style={styles.wrapperSectionTitle}>
-					<Text
-						numberOfLines={2}
-						ellipsizeMode={'tail'}
-						style={styles.sectionTitleStyle}
-					>
-						{'Cursos'}
-					</Text>
-				</View>
+				<NavigationBar title={'Cursos'} />
 				<ScrollView style={styles.container}>
 					<View style={styles.wrapperContent}>
 						<View style={styles.wrapperSwipeableCardsList}>
