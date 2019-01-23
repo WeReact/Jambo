@@ -11,6 +11,7 @@ import Icon from './Icon';
 import StatusBarColor from './StatusBarColor';
 import BrowserApp from './BrowserApp';
 import FlashCard from './FlashCard';
+import LineSeparator from './LineSeparator';
 
 export {
 	Button,
@@ -25,5 +26,6 @@ export {
 	Icon,
 	StatusBarColor,
 	BrowserApp,
-	FlashCard
+	FlashCard,
+	LineSeparator
 };

@@ -13,7 +13,7 @@ import '@firebase/auth';
 import '@firebase/database';
 import { Images, Colors } from '../Themes';
 import { NavigationBar } from '../Components';
-import { Spinner, Button } from '../Components/Common';
+import { Spinner, LineSeparator } from '../Components/Common';
 // Styles
 import styles from './Styles/CourseScreenStyles';
 
@@ -164,10 +164,22 @@ class CourseScreen extends Component {
 					data={this.state.courses}
 					showsHorizontalScrollIndicator={false}
 					renderItem={({ item }) => this._renderSwipeableCard(item)}
+					ItemSeparatorComponent={() => this._renderSeparator()}
 					keyExtractor={this._keyExtractor}
 				/>
 			</View>
 		);
+	};
+
+	/**
+	 * render the line separator between items
+	 * @author samuelmataraso
+	 * @method _renderSeparator
+	 * @param none
+	 * @return {func} render
+	 */
+	_renderSeparator = () => {
+		return <LineSeparator />;
 	};
 
 	render() {

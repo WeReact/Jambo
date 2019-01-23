@@ -9,7 +9,12 @@ import {
 } from 'react-native';
 import { Images, Colors } from '../Themes';
 import { NavigationBar } from '../Components';
-import { Button, FlashCard, Spinner } from '../Components/Common';
+import {
+	Button,
+	FlashCard,
+	Spinner,
+	LineSeparator
+} from '../Components/Common';
 import { RandomColor } from '../Lib/Utils';
 
 // Styles
@@ -137,10 +142,22 @@ class ListLessonsScreen extends Component {
 					data={aulas}
 					showsHorizontalScrollIndicator={false}
 					renderItem={({ item, index }) => this._renderLesson(item, index)}
+					ItemSeparatorComponent={() => this._renderSeparator()}
 					keyExtractor={this._keyExtractor}
 				/>
 			</View>
 		);
+	};
+
+	/**
+	 * render the line separator between items
+	 * @author samuelmataraso
+	 * @method _renderSeparator
+	 * @param none
+	 * @return {func} render
+	 */
+	_renderSeparator = () => {
+		return <LineSeparator />;
 	};
 
 	render() {
