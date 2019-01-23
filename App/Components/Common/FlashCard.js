@@ -5,7 +5,8 @@ import {
 	Modal,
 	Text,
 	Image,
-	ScrollView
+	ScrollView,
+	Alert
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -81,12 +82,29 @@ class FlashCard extends Component {
 								<TouchableOpacity
 									style={styles.buttonLeft}
 									onPress={() => {
-										this.setState({
-											correct: 0,
-											wrong: 0,
-											count: 1
-										});
-										return onPressOutside();
+										Alert.alert(
+											'Tem certeza que quer sair?',
+											'Todo o progresso nesta sessão \n será perdido.',
+											[
+												{
+													text: 'Cancelar',
+													onPress: () => {},
+													style: 'cancel'
+												},
+												{
+													text: 'Sair',
+													onPress: () => {
+														this.setState({
+															correct: 0,
+															wrong: 0,
+															count: 1
+														});
+														return onPressOutside();
+													}
+												}
+											],
+											{ cancelable: false }
+										);
 									}}
 								>
 									<Image
@@ -103,7 +121,7 @@ class FlashCard extends Component {
 						<View style={styles.questionsBody}>
 							<View style={styles.questionsWrapperProgress}>
 								<Text style={styles.questionsProgressText}>
-									Progress{' '}
+									Progresso{' '}
 									{quiz ? (
 										<Text style={styles.questionsProgressCount}>
 											{count}/{quiz.length - 1}
@@ -122,11 +140,6 @@ class FlashCard extends Component {
 								</View>
 							</View>
 							<View style={styles.questionsCard}>
-								<Image
-									source={Images.cardBack}
-									style={styles.flashCard}
-									resizeMode={'contain'}
-								/>
 								<View style={styles.floatQuestionContent}>
 									<ScrollView
 										showsVerticalScrollIndicator={false}
