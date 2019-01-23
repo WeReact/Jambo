@@ -139,8 +139,15 @@ export default StyleSheet.create({
 		fontSize: 14,
 		color: Colors.greyAccent
 	},
+	wrapperButton: {
+		marginTop: Metrics.section,
+		flex: 1,
+		justifyContent: 'center'
+	},
 	actionButtonStyle: {
 		borderRadius: 5,
-		backgroundColor: Colors.orangeAccent
+		backgroundColor: Colors.orangeAccent,
+		marginLeft: 20,
+		marginRight: 20
 	}
 });

@@ -7,7 +7,7 @@ import {
 	TouchableOpacity,
 	FlatList
 } from 'react-native';
-import { Images, Colors } from '../Themes';
+import { Images, Colors, Metrics } from '../Themes';
 import { NavigationBar } from '../Components';
 import {
 	Button,
@@ -197,13 +197,6 @@ class ListLessonsScreen extends Component {
 						<View style={styles.wrapperSwipeableCardsList}>
 							{this._renderLessonsList()}
 						</View>
-						<View>
-							<Button
-								labelButton={'Iniciar Quiz'}
-								buttonStyle={styles.actionButtonStyle}
-								onPress={() => this._handleOpenQuiz()}
-							/>
-						</View>
 					</View>
 					{
 						<FlashCard
@@ -217,6 +210,13 @@ class ListLessonsScreen extends Component {
 					}
 					{<Spinner />}
 				</ScrollView>
+				<View style={styles.wrapperButton}>
+					<Button
+						labelButton={'Iniciar Quiz'}
+						buttonStyle={styles.actionButtonStyle}
+						onPress={() => this._handleOpenQuiz()}
+					/>
+				</View>
 			</View>
 		);
 	}
