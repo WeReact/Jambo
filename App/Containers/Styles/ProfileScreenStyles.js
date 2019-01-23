@@ -6,40 +6,40 @@ export default StyleSheet.create({
 	container: {
 		paddingBottom: Metrics.baseMargin
 	},
-    avatarContent: {
-        width: 130,
-        height: 130,
-        borderRadius: 63,
-        borderWidth: 4,
-        borderColor: "white",
-        marginBottom:10,
-        alignSelf:'center',
-        position: 'absolute',
-        marginTop:130
-    },
-    header:{
-        backgroundColor: "#FFFFFF",
-        height:200,
-      },
-    bodyContent:{
-        flex: 1,
-        alignItems: 'center',
-        padding:30,
-        marginTop:80
-    },
-    nameContent: {
-        fontSize:28,
-        color: "#696969",
-        fontWeight: "600"
-    },
-    emailContent: {
-        fontSize:16,
-        color: "#696969",
-        marginTop:10
-    },
-    logoutContent: {
-        marginTop:50
-    },
+	avatarContent: {
+		width: 130,
+		height: 130,
+		borderRadius: 63,
+		borderWidth: 4,
+		borderColor: 'white',
+		marginBottom: 10,
+		alignSelf: 'center',
+		position: 'absolute',
+		marginTop: 130
+	},
+	header: {
+		backgroundColor: Colors.orangeAccent,
+		height: 200
+	},
+	bodyContent: {
+		flex: 1,
+		alignItems: 'center',
+		padding: 30,
+		marginTop: 80
+	},
+	nameContent: {
+		fontSize: 28,
+		color: '#696969',
+		fontWeight: '600'
+	},
+	emailContent: {
+		fontSize: 16,
+		color: '#696969',
+		marginTop: 10
+	},
+	logoutContent: {
+		marginTop: 50
+	},
 	centered: {
 		alignItems: 'center'
 	},
@@ -54,15 +54,15 @@ export default StyleSheet.create({
 		marginRight: 14,
 		marginTop: 30
 	},
-    actionButtonStyle: {
+	actionButtonStyle: {
 		borderRadius: 5,
 		backgroundColor: Colors.orangeAccent
-    },
-    label: {
+	},
+	label: {
 		textAlign: 'center',
 		fontSize: 10
-    },
-    wrapperTabBarLabel: {
-		marginTop: Platform.OS === 'ios' ? 15 : 0
 	},
+	wrapperTabBarLabel: {
+		marginTop: Platform.OS === 'ios' ? 15 : 0
+	}
 });
