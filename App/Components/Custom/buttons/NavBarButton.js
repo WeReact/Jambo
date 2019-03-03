@@ -18,7 +18,12 @@ export default class NavBarButton extends Component {
 			content = <View style={marginPosition}>{icon}</View>;
 		}
 		return (
-			<TouchableOpacity onPress={handleButtonPress}>{content}</TouchableOpacity>
+			<TouchableOpacity
+				hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
+				onPress={handleButtonPress}
+			>
+				{content}
+			</TouchableOpacity>
 		);
 	}
 }
