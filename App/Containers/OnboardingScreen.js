@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
 	Text,
 	View,
 	Image,
 	TouchableHighlight,
 	ScrollView,
-	Alert
+	Alert,
+	SafeAreaView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors, Navigation, Images } from '../Themes';
@@ -42,11 +43,18 @@ export default class LoggedOut extends Component {
 	}
 
 	render() {
+		const { navigation } = this.props;
+		const { navigate } = navigation;
 		return (
-			<ScrollView style={styles.wrapper}>
-				<View style={styles.welcomeWrapper}>
-					<Image source={Images.newJambo} style={styles.logo} />
-					{/*
+			<Fragment>
+				<SafeAreaView
+					style={{ flex: 0, backgroundColor: Colors.orangeAccent }}
+				/>
+				<SafeAreaView style={{ flex: 1, backgroundColor: Colors.orangeAccent }}>
+					<ScrollView style={styles.wrapper}>
+						<View style={styles.welcomeWrapper}>
+							<Image source={Images.newJambo} style={styles.logo} />
+							{/*
 						<RoundedButton
 							text="Continue with Facebook"
 							textColor={Colors.green01}
@@ -61,25 +69,25 @@ export default class LoggedOut extends Component {
 							handleOnPress={this.onFacebookPress}
 						/>
 					 */}
-					<RoundedButton
-						text="Entrar"
-						textColor={Colors.white}
-						handleOnPress={this.onCreateAccountPress}
-					/>
-					<RoundedButton
-						text={'Cadastre-se agora!'}
-						textColor={Colors.orangeAccent}
-						background={Colors.white}
-						icon={
-							<Icon
-								name={'account-plus'}
-								size={20}
-								style={styles.facebookButtonIcon}
+							<RoundedButton
+								text="Entrar"
+								textColor={Colors.white}
+								handleOnPress={() => navigate('LogIn')}
 							/>
-						}
-						handleOnPress={this.onFacebookPress}
-					/>
-					{/* 
+							<RoundedButton
+								text={'Cadastre-se agora!'}
+								textColor={Colors.orangeAccent}
+								background={Colors.white}
+								icon={
+									<Icon
+										name={'account-plus'}
+										size={20}
+										style={styles.facebookButtonIcon}
+									/>
+								}
+								handleOnPress={this.onFacebookPress}
+							/>
+							{/* 
 						<TouchableHighlight
 							style={styles.moreOptionsButton}
 							onPress={this.onMoreOptionsPress}
@@ -111,8 +119,10 @@ export default class LoggedOut extends Component {
 							<Text style={styles.termsText}>.</Text>
 						</View>
 					*/}
-				</View>
-			</ScrollView>
+						</View>
+					</ScrollView>
+				</SafeAreaView>
+			</Fragment>
 		);
 	}
 }

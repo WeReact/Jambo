@@ -57,7 +57,9 @@ export default class InputField extends Component {
 			autoFocus,
 			autoCapitalize,
 			placeholder,
-			defaultValue
+			defaultValue,
+			returnKeyType,
+			autoComplete
 		} = this.props;
 		const { secureInput, scaleCheckmarkValue, inputValue } = this.state;
 		const fontSize = labelTextSize || 14;
@@ -90,7 +92,7 @@ export default class InputField extends Component {
 						onPress={this.toggleShowPassword}
 					>
 						<Text style={styles.showButtonText}>
-							{secureInput ? 'Show' : 'Hide'}
+							{secureInput ? 'Mostrar' : 'Esconder'}
 						</Text>
 					</TouchableOpacity>
 				) : null}
@@ -118,6 +120,8 @@ export default class InputField extends Component {
 					placeholder={placeholder}
 					defaultValue={inputValue}
 					value={inputValue}
+					returnKeyType={returnKeyType}
+					autoComplete={autoComplete}
 				/>
 			</View>
 		);
@@ -139,7 +143,10 @@ InputField.propTypes = {
 	labelTextWeight: PropTypes.string,
 	inputStyle: PropTypes.object,
 	placeholder: PropTypes.string,
-	defaultValue: PropTypes.string
+	defaultValue: PropTypes.string,
+	returnKeyType: PropTypes.string,
+	autoComplete: PropTypes.string,
+	ref: () => {}
 };
 
 const styles = StyleSheet.create({

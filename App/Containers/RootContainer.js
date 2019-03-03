@@ -38,12 +38,10 @@ class RootContainer extends Component {
 		return (
 			<Fragment>
 				<SafeAreaView style={{ flex: 0, backgroundColor: '#e36d0d' }} />
-				<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-					<View style={styles.applicationView}>
-						{this._handlerStatusBar()}
-						<AppNavigation />
-					</View>
-				</SafeAreaView>
+				<View style={styles.applicationView}>
+					{this._handlerStatusBar()}
+					<AppNavigation />
+				</View>
 			</Fragment>
 		);
 	}

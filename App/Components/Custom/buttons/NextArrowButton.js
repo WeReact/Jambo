@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { TouchableHighlight, StyleSheet, Text, View } from 'react-native';
+import {
+	TouchableHighlight,
+	StyleSheet,
+	Text,
+	View,
+	Platform
+} from 'react-native';
 import { Colors } from '../../../Themes';
 import { iPhoneSize } from '../../../Lib/Utils';
 
 const size = iPhoneSize();
 let buttonSize = 60;
-let buttonWrapperPadding = 0;
+let buttonWrapperPadding = Platform.OS === 'android' ? 30 : 0;
 
 if (size === 'small') {
 	buttonSize = 50;
@@ -27,7 +33,7 @@ export default class NextArrowButton extends Component {
 				>
 					<Icon
 						name="angle-right"
-						color={Colors.green01}
+						color={Colors.orangeAccent}
 						size={32}
 						style={styles.icon}
 					/>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 // import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import ActionCreators from '../redux/actions';
@@ -15,24 +16,25 @@ import styles from './Styles/LogIn';
 
 class LogIn extends Component {
 	static navigationOptions = ({ navigation }) => ({
-		headerRight: (
-			<NavBarButton
-				handleButtonPress={() => navigation.navigate('ForgotPassword')}
-				location="right"
-				color={Colors.white}
-				text="Forgot Password"
-			/>
-		),
-		headerLeft: (
-			<NavBarButton
-				handleButtonPress={() => navigation.goBack()}
-				location="left"
-				icon={<Icon name="angle-left" color={Colors.white} size={30} />}
-			/>
-		),
-		headerStyle: Navigation,
-		headerTransparent: true,
-		headerTintColor: Colors.white
+		header: null
+		// headerRight: (
+		// 	<NavBarButton
+		// 		handleButtonPress={() => navigation.navigate('ForgotPassword')}
+		// 		location="right"
+		// 		color={Colors.white}
+		// 		text="Forgot Password"
+		// 	/>
+		// ),
+		// headerLeft: (
+		// 	<NavBarButton
+		// 		handleButtonPress={() => navigation.goBack()}
+		// 		location="left"
+		// 		icon={<Icon name="angle-left" color={Colors.white} size={30} />}
+		// 	/>
+		// ),
+		// headerStyle: Navigation,
+		// headerTransparent: true,
+		// headerTintColor: Colors.white
 	});
 
 	constructor(props) {
@@ -111,21 +113,50 @@ class LogIn extends Component {
 		return true;
 	};
 
-	render() {
+	_renderHeader = () => {
+		const { navigation } = this.props;
+		return (
+			<View
+				style={{
+					flexDirection: 'row',
+					flex: 1,
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					marginBottom: 40
+				}}
+			>
+				<View>
+					<NavBarButton
+						handleButtonPress={() => navigation.goBack()}
+						location="left"
+						icon={<Icon name="angle-left" color={Colors.white} size={30} />}
+					/>
+				</View>
+				<View>
+					<NavBarButton
+						handleButtonPress={() => navigation.navigate('ForgotPassword')}
+						location="right"
+						color={Colors.white}
+						text="Esqueci Senha"
+					/>
+				</View>
+			</View>
+		);
+	};
+
+	_render = () => {
 		const { formValid, loadingVisible, validEmail, validPassword } = this.state;
 		const showNotification = !formValid;
-		const background = formValid ? Colors.green01 : Colors.darkOrange;
+		const background = formValid ? Colors.orangeAccent : Colors.darkOrange;
 		const notificationMarginTop = showNotification ? 10 : 0;
 		return (
-			<KeyboardAvoidingView
-				style={[{ backgroundColor: background }, styles.wrapper]}
-				behavior="padding"
-			>
-				<View style={styles.scrollViewWrapper}>
-					<ScrollView style={styles.scrollView}>
-						<Text style={styles.loginHeader}>Log In</Text>
+			<View style={[{ backgroundColor: background }, styles.wrapper]}>
+				<KeyboardAwareScrollView style={styles.scrollView}>
+					{this._renderHeader()}
+					<View style={{ paddingLeft: 30, paddingRight: 30 }}>
+						<Text style={styles.loginHeader}>{'Entrar'}</Text>
 						<InputField
-							labelText="EMAIL ADDRESS"
+							labelText="Email"
 							labelTextSize={14}
 							labelColor={Colors.white}
 							textColor={Colors.white}
@@ -135,9 +166,12 @@ class LogIn extends Component {
 							onChangeText={this.handleEmailChange}
 							showCheckmark={validEmail}
 							autoFocus
+							returnKeyType={'next'}
+							autoComplete={'email'}
+							autoCapitalize={'none'}
 						/>
 						<InputField
-							labelText="PASSWORD"
+							labelText="Senha"
 							labelTextSize={14}
 							labelColor={Colors.white}
 							textColor={Colors.white}
@@ -146,13 +180,19 @@ class LogIn extends Component {
 							customStyle={{ marginBottom: 30 }}
 							onChangeText={this.handlePasswordChange}
 							showCheckmark={validPassword}
+							returnKeyType={'done'}
+							underlineColorAndroid={'transparent'}
+							autoCapitalize={'none'}
+							autoCorrect={false}
+							autoComplete={'password'}
+							autoCapitalize={'none'}
 						/>
-					</ScrollView>
-					<NextArrowButton
-						handleNextButton={this.handleNextButton}
-						disabled={this.toggleNextButtonState()}
-					/>
-				</View>
+					</View>
+				</KeyboardAwareScrollView>
+				<NextArrowButton
+					handleNextButton={this.handleNextButton}
+					disabled={this.toggleNextButtonState()}
+				/>
 				<Loader modalVisible={loadingVisible} animationType="fade" />
 				<View
 					style={[
@@ -168,8 +208,70 @@ class LogIn extends Component {
 						secondLine="Please try again."
 					/>
 				</View>
-			</KeyboardAvoidingView>
+			</View>
 		);
+	};
+
+	render() {
+		return this._render();
+		// const { formValid, loadingVisible, validEmail, validPassword } = this.state;
+		// const showNotification = !formValid;
+		// const background = formValid ? Colors.orangeAccent : Colors.darkOrange;
+		// const notificationMarginTop = showNotification ? 10 : 0;
+		// return (
+		// 	<KeyboardAvoidingView
+		// 		style={[{ backgroundColor: background }, styles.wrapper]}
+		// 		behavior="padding"
+		// 	>
+		// 		<View style={styles.scrollViewWrapper}>
+		// 			<ScrollView style={styles.scrollView}>
+		// 				<Text style={styles.loginHeader}>Log In</Text>
+		// 				<InputField
+		// 					labelText="EMAIL ADDRESS"
+		// 					labelTextSize={14}
+		// 					labelColor={Colors.white}
+		// 					textColor={Colors.white}
+		// 					borderBottomColor={Colors.white}
+		// 					inputType="email"
+		// 					customStyle={{ marginBottom: 30 }}
+		// 					onChangeText={this.handleEmailChange}
+		// 					showCheckmark={validEmail}
+		// 					autoFocus
+		// 				/>
+		// 				<InputField
+		// 					labelText="PASSWORD"
+		// 					labelTextSize={14}
+		// 					labelColor={Colors.white}
+		// 					textColor={Colors.white}
+		// 					borderBottomColor={Colors.white}
+		// 					inputType="password"
+		// 					customStyle={{ marginBottom: 30 }}
+		// 					onChangeText={this.handlePasswordChange}
+		// 					showCheckmark={validPassword}
+		// 				/>
+		// 			</ScrollView>
+		// 			<NextArrowButton
+		// 				handleNextButton={this.handleNextButton}
+		// 				disabled={this.toggleNextButtonState()}
+		// 			/>
+		// 		</View>
+		// 		<Loader modalVisible={loadingVisible} animationType="fade" />
+		// 		<View
+		// 			style={[
+		// 				styles.notificationWrapper,
+		// 				{ marginTop: notificationMarginTop }
+		// 			]}
+		// 		>
+		// 			<Notification
+		// 				showNotification={showNotification}
+		// 				handleCloseNotification={this.handleCloseNotification}
+		// 				type="Error"
+		// 				firstLine="Those credentials don't look right."
+		// 				secondLine="Please try again."
+		// 			/>
+		// 		</View>
+		// 	</KeyboardAwareScrollView>
+		// );
 	}
 }
 
