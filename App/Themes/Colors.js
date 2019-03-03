@@ -67,6 +67,7 @@ const colors = {
 	blackGray: 'rgba(33, 49, 58, 0.9)',
 	black_0_5: 'rgba(0, 0, 0, 0.5)',
 	// deepSkyBlue: '#007aff'
+	//customComponents Colors Bellow
 	black: '#000000',
 	lightBlack: '#484848',
 	green01: '#008388',

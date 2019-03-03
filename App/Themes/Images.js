@@ -48,7 +48,8 @@ const images = {
 	cool: require('../Images/cool.png'),
 	clap: require('../Images/clap.png'),
 	crying: require('../Images/crying.png'),
-	smile: require('../Images/smile.png')
+	smile: require('../Images/smile.png'),
+	gifLoader: require('../Images/gif/orangeLoader.gif')
 };
 
 export default images;
