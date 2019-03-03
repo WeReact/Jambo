@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import ActionCreators from '../redux/actions';
 import { Colors, Navigation } from '../Themes';
 import InputField from '../Components/Custom/form/InputField';
 import NextArrowButton from '../Components/Custom/buttons/NextArrowButton';
@@ -17,24 +13,6 @@ import styles from './Styles/CredentialsScreenStyles';
 class CredentialsScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		header: null
-		// headerRight: (
-		// 	<NavBarButton
-		// 		handleButtonPress={() => navigation.navigate('ForgotPassword')}
-		// 		location="right"
-		// 		color={Colors.white}
-		// 		text="Forgot Password"
-		// 	/>
-		// ),
-		// headerLeft: (
-		// 	<NavBarButton
-		// 		handleButtonPress={() => navigation.goBack()}
-		// 		location="left"
-		// 		icon={<Icon name="angle-left" color={Colors.white} size={30} />}
-		// 	/>
-		// ),
-		// headerStyle: Navigation,
-		// headerTransparent: true,
-		// headerTintColor: Colors.white
 	});
 
 	constructor(props) {
@@ -47,12 +25,6 @@ class CredentialsScreen extends Component {
 			validPassword: false,
 			loadingVisible: false
 		};
-
-		// this.handleCloseNotification = this.handleCloseNotification.bind(this);
-		// this.handleEmailChange = this.handleEmailChange.bind(this);
-		// this.handleNextButton = this.handleNextButton.bind(this);
-		// this.handlePasswordChange = this.handlePasswordChange.bind(this);
-		// this.toggleNextButtonState = this.toggleNextButtonState.bind(this);
 	}
 
 	handleNextButton = () => {
@@ -216,81 +188,7 @@ class CredentialsScreen extends Component {
 
 	render() {
 		return this._render();
-		// const { formValid, loadingVisible, validEmail, validPassword } = this.state;
-		// const showNotification = !formValid;
-		// const background = formValid ? Colors.orangeAccent : Colors.darkOrange;
-		// const notificationMarginTop = showNotification ? 10 : 0;
-		// return (
-		// 	<KeyboardAvoidingView
-		// 		style={[{ backgroundColor: background }, styles.wrapper]}
-		// 		behavior="padding"
-		// 	>
-		// 		<View style={styles.scrollViewWrapper}>
-		// 			<ScrollView style={styles.scrollView}>
-		// 				<Text style={styles.CredentialsScreenHeader}>Log In</Text>
-		// 				<InputField
-		// 					labelText="EMAIL ADDRESS"
-		// 					labelTextSize={14}
-		// 					labelColor={Colors.white}
-		// 					textColor={Colors.white}
-		// 					borderBottomColor={Colors.white}
-		// 					inputType="email"
-		// 					customStyle={{ marginBottom: 30 }}
-		// 					onChangeText={this.handleEmailChange}
-		// 					showCheckmark={validEmail}
-		// 					autoFocus
-		// 				/>
-		// 				<InputField
-		// 					labelText="PASSWORD"
-		// 					labelTextSize={14}
-		// 					labelColor={Colors.white}
-		// 					textColor={Colors.white}
-		// 					borderBottomColor={Colors.white}
-		// 					inputType="password"
-		// 					customStyle={{ marginBottom: 30 }}
-		// 					onChangeText={this.handlePasswordChange}
-		// 					showCheckmark={validPassword}
-		// 				/>
-		// 			</ScrollView>
-		// 			<NextArrowButton
-		// 				handleNextButton={this.handleNextButton}
-		// 				disabled={this.toggleNextButtonState()}
-		// 			/>
-		// 		</View>
-		// 		<Loader modalVisible={loadingVisible} animationType="fade" />
-		// 		<View
-		// 			style={[
-		// 				styles.notificationWrapper,
-		// 				{ marginTop: notificationMarginTop }
-		// 			]}
-		// 		>
-		// 			<Notification
-		// 				showNotification={showNotification}
-		// 				handleCloseNotification={this.handleCloseNotification}
-		// 				type="Error"
-		// 				firstLine="Those credentials don't look right."
-		// 				secondLine="Please try again."
-		// 			/>
-		// 		</View>
-		// 	</KeyboardAwareScrollView>
-		// );
 	}
 }
 
 export default CredentialsScreen;
-
-// const mapStateToProps = state => ({
-//   loggedInStatus: state.loggedInStatus,
-// });
-
-// const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
-
-// CredentialsScreen.propTypes = {
-//   CredentialsScreen: PropTypes.func.isRequired,
-//   navigation: PropTypes.shape({
-//     navigate: PropTypes.func,
-//     goBack: PropTypes.func,
-//   }).isRequired,
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(CredentialsScreen);

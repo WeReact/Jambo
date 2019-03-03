@@ -72,11 +72,17 @@ const styles = StyleSheet.create({
 		marginLeft: 20,
 		marginRight: 20
 	},
+	wrapperButton: {
+		flex: 1,
+		alignItems: 'flex-end',
+		justifyContent: 'center',
+		marginRight: 20,
+		marginBottom: 20
+	},
 	createButton: {
-		position: 'absolute',
-		bottom: 0,
-		right: 10,
-		width: 110
+		width: 140,
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	buttonIcon: {
 		position: 'absolute',

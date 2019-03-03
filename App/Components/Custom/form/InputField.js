@@ -16,7 +16,12 @@ export default class InputField extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			secureInput: !(props.inputType === 'text' || props.inputType === 'email'),
+			secureInput: !(
+				props.inputType === 'text' ||
+				props.inputType === 'email' ||
+				props.inputType === 'date' ||
+				props.inputType === 'phone'
+			),
 			scaleCheckmarkValue: new Animated.Value(0),
 			inputValue: props.defaultValue
 		};

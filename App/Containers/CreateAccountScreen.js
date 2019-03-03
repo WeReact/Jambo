@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Colors, Navigation } from '../Themes';
+import { Colors } from '../Themes';
 import InputField from '../Components/Custom/form/InputField';
-import NextArrowButton from '../Components/Custom/buttons/NextArrowButton';
 import Notification from '../Components/Custom/Notification';
 import Loader from '../Components/Custom/Loader';
 import NavBarButton from '../Components/Custom/buttons/NavBarButton';
+import RoundedButton from '../Components/Custom/buttons/RoundedButton';
 import RadioInput from '../Components/Custom/form/RadioInput';
 import styles from './Styles/CreateAccountScreenStyles';
 
@@ -287,10 +286,36 @@ class CreateAccountScreen extends Component {
 	};
 
 	_render = () => {
-		const { formValid, loadingVisible, validEmail, validPassword } = this.state;
+		const {
+			formValid,
+			loadingVisible,
+			validEmail,
+			validPassword,
+			name,
+			birth,
+			city,
+			cityState,
+			phone,
+			emailAddress,
+			password,
+			profession,
+			isFormed,
+			isStudent
+		} = this.state;
 		const showNotification = !formValid;
 		const background = formValid ? Colors.orangeAccent : Colors.darkOrange;
 		const notificationMarginTop = showNotification ? 10 : 0;
+		const doubleCheck =
+			!name ||
+			!birth ||
+			!city ||
+			!cityState ||
+			!phone ||
+			!emailAddress ||
+			!password ||
+			(!profession && (!isStudent || !isFormed))
+				? true
+				: false;
 		return (
 			<View style={[{ backgroundColor: background }, styles.wrapper]}>
 				<KeyboardAwareScrollView style={styles.scrollView}>
@@ -379,7 +404,7 @@ class CreateAccountScreen extends Component {
 							returnKeyType={'done'}
 							autoCapitalize={'none'}
 							keyboardType={'number-pad'}
-							inputType={'number'}
+							inputType={'phone'}
 							showCheckmark={false}
 						/>
 						<InputField
@@ -415,11 +440,31 @@ class CreateAccountScreen extends Component {
 							autoCapitalize={'none'}
 						/>
 					</View>
+					<View style={styles.wrapperButton}>
+						<View style={styles.createButton}>
+							<RoundedButton
+								text="Cadastrar"
+								textColor={Colors.orangeAccent}
+								textAlign="left"
+								background={Colors.white}
+								borderColor={Colors.orangeAccent}
+								iconPosition="left"
+								disabled={doubleCheck}
+								icon={
+									<View style={styles.buttonIcon}>
+										<Icon
+											name="angle-right"
+											color={Colors.orangeAccent}
+											size={32}
+											style={styles.icon}
+										/>
+									</View>
+								}
+								handleOnPress={this.handleCreateList}
+							/>
+						</View>
+					</View>
 				</KeyboardAwareScrollView>
-				<NextArrowButton
-					handleNextButton={this.handleNextButton}
-					disabled={this.toggleNextButtonState()}
-				/>
 				<Loader modalVisible={loadingVisible} animationType="fade" />
 				<View
 					style={[
@@ -440,81 +485,7 @@ class CreateAccountScreen extends Component {
 
 	render() {
 		return this._render();
-		// const { formValid, loadingVisible, validEmail, validPassword } = this.state;
-		// const showNotification = !formValid;
-		// const background = formValid ? Colors.orangeAccent : Colors.darkOrange;
-		// const notificationMarginTop = showNotification ? 10 : 0;
-		// return (
-		// 	<KeyboardAvoidingView
-		// 		style={[{ backgroundColor: background }, styles.wrapper]}
-		// 		behavior="padding"
-		// 	>
-		// 		<View style={styles.scrollViewWrapper}>
-		// 			<ScrollView style={styles.scrollView}>
-		// 				<Text style={styles.CreateAccountScreenHeader}>Log In</Text>
-		// 				<InputField
-		// 					labelText="EMAIL ADDRESS"
-		// 					labelTextSize={14}
-		// 					labelColor={Colors.white}
-		// 					textColor={Colors.white}
-		// 					borderBottomColor={Colors.white}
-		// 					inputType="email"
-		// 					customStyle={{ marginBottom: 30 }}
-		// 					onChangeText={this.handleEmailChange}
-		// 					showCheckmark={validEmail}
-		// 					autoFocus
-		// 				/>
-		// 				<InputField
-		// 					labelText="PASSWORD"
-		// 					labelTextSize={14}
-		// 					labelColor={Colors.white}
-		// 					textColor={Colors.white}
-		// 					borderBottomColor={Colors.white}
-		// 					inputType="password"
-		// 					customStyle={{ marginBottom: 30 }}
-		// 					onChangeText={this.handlePasswordChange}
-		// 					showCheckmark={validPassword}
-		// 				/>
-		// 			</ScrollView>
-		// 			<NextArrowButton
-		// 				handleNextButton={this.handleNextButton}
-		// 				disabled={this.toggleNextButtonState()}
-		// 			/>
-		// 		</View>
-		// 		<Loader modalVisible={loadingVisible} animationType="fade" />
-		// 		<View
-		// 			style={[
-		// 				styles.notificationWrapper,
-		// 				{ marginTop: notificationMarginTop }
-		// 			]}
-		// 		>
-		// 			<Notification
-		// 				showNotification={showNotification}
-		// 				handleCloseNotification={this.handleCloseNotification}
-		// 				type="Error"
-		// 				firstLine="Those credentials don't look right."
-		// 				secondLine="Please try again."
-		// 			/>
-		// 		</View>
-		// 	</KeyboardAwareScrollView>
-		// );
 	}
 }
 
 export default CreateAccountScreen;
-
-// const mapStateToProps = state => ({
-//   loggedInStatus: state.loggedInStatus,
-// });
-
-// const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
-
-// CreateAccountScreen.propTypes = {
-//   CreateAccountScreen: PropTypes.func.isRequired,
-//   navigation: PropTypes.shape({
-//     navigate: PropTypes.func,
-//     goBack: PropTypes.func,
-//   }).isRequired,
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(CreateAccountScreen);
