@@ -84,7 +84,7 @@ export default class LoggedOut extends Component {
 										style={styles.facebookButtonIcon}
 									/>
 								}
-								handleOnPress={this.onFacebookPress}
+								handleOnPress={() => navigate('CreateAccountScreen')}
 							/>
 							{/* 
 						<TouchableHighlight

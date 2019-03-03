@@ -1,40 +1,20 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import ActionCreators from '../redux/actions';
 import { Colors, Navigation } from '../Themes';
 import InputField from '../Components/Custom/form/InputField';
 import NextArrowButton from '../Components/Custom/buttons/NextArrowButton';
 import Notification from '../Components/Custom/Notification';
 import Loader from '../Components/Custom/Loader';
 import NavBarButton from '../Components/Custom/buttons/NavBarButton';
-import styles from './Styles/CredentialsScreenStyles';
+import RadioInput from '../Components/Custom/form/RadioInput';
+import styles from './Styles/CreateAccountScreenStyles';
 
-class CredentialsScreen extends Component {
+class CreateAccountScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		header: null
-		// headerRight: (
-		// 	<NavBarButton
-		// 		handleButtonPress={() => navigation.navigate('ForgotPassword')}
-		// 		location="right"
-		// 		color={Colors.white}
-		// 		text="Forgot Password"
-		// 	/>
-		// ),
-		// headerLeft: (
-		// 	<NavBarButton
-		// 		handleButtonPress={() => navigation.goBack()}
-		// 		location="left"
-		// 		icon={<Icon name="angle-left" color={Colors.white} size={30} />}
-		// 	/>
-		// ),
-		// headerStyle: Navigation,
-		// headerTransparent: true,
-		// headerTintColor: Colors.white
 	});
 
 	constructor(props) {
@@ -42,17 +22,21 @@ class CredentialsScreen extends Component {
 		this.state = {
 			formValid: true,
 			validEmail: false,
+			name: '',
+			profession: '',
 			emailAddress: '',
 			password: '',
+			birth: '',
+			city: '',
+			cityState: '',
+			phone: '',
 			validPassword: false,
-			loadingVisible: false
+			loadingVisible: false,
+			hasProfession: false,
+			hideRadioInput: false,
+			isFormed: false,
+			isStudent: false
 		};
-
-		// this.handleCloseNotification = this.handleCloseNotification.bind(this);
-		// this.handleEmailChange = this.handleEmailChange.bind(this);
-		// this.handleNextButton = this.handleNextButton.bind(this);
-		// this.handlePasswordChange = this.handlePasswordChange.bind(this);
-		// this.toggleNextButtonState = this.toggleNextButtonState.bind(this);
 	}
 
 	handleNextButton = () => {
@@ -146,6 +130,151 @@ class CredentialsScreen extends Component {
 		);
 	};
 
+	_handleProfession = () => {
+		const { hideRadioInput, hasProfession, isStudent, isFormed } = this.state;
+		if (hideRadioInput) {
+			if (hasProfession) {
+				return (
+					<InputField
+						labelText="Profissão"
+						labelTextSize={14}
+						labelColor={Colors.white}
+						textColor={Colors.white}
+						borderBottomColor={Colors.white}
+						customStyle={{ marginBottom: 30 }}
+						onChangeText={value =>
+							this.setState({
+								profession: value
+							})
+						}
+						returnKeyType={'done'}
+					/>
+				);
+			} else {
+				return (
+					<View>
+						<Text style={styles.privacyOptionTitle}>
+							{'Estudante ou Formado?'}
+						</Text>
+						<View style={{ flexDirection: 'row' }}>
+							<View>
+								<Text style={styles.privacyOptionDescription}>
+									{'Estudante'}
+								</Text>
+							</View>
+							<TouchableHighlight
+								onPress={() =>
+									this.setState({
+										isFormed: false,
+										isStudent: true
+									})
+								}
+								style={styles.privacyOptionItem}
+								underlayColor={Colors.gray01}
+							>
+								<View style={styles.privacyRadioInput}>
+									<RadioInput
+										backgroundColor={Colors.gray07}
+										borderColor={Colors.gray05}
+										selectedBackgroundColor={Colors.green01}
+										selectedBorderColor={Colors.green01}
+										iconColor={Colors.white}
+										selected={isStudent}
+									/>
+								</View>
+							</TouchableHighlight>
+						</View>
+						<View style={styles.divider} />
+						<View style={{ flexDirection: 'row' }}>
+							<View>
+								<Text style={styles.privacyOptionDescription}>{'Formado'}</Text>
+							</View>
+							<TouchableHighlight
+								onPress={() =>
+									this.setState({
+										isFormed: true,
+										isStudent: false
+									})
+								}
+								style={styles.privacyOptionItem}
+								underlayColor={Colors.gray01}
+							>
+								<View style={styles.privacyRadioInput}>
+									<RadioInput
+										backgroundColor={Colors.gray07}
+										borderColor={Colors.gray05}
+										selectedBackgroundColor={Colors.green01}
+										selectedBorderColor={Colors.green01}
+										iconColor={Colors.white}
+										selected={isFormed}
+									/>
+								</View>
+							</TouchableHighlight>
+						</View>
+					</View>
+				);
+			}
+		} else {
+			return (
+				<View>
+					<Text style={styles.privacyOptionTitle}>{'Você Trabalha?'}</Text>
+					<View style={{ flexDirection: 'row' }}>
+						<View>
+							<Text style={styles.privacyOptionDescription}>{'Sim'}</Text>
+						</View>
+						<TouchableHighlight
+							onPress={() =>
+								this.setState({
+									hideRadioInput: true,
+									hasProfession: true
+								})
+							}
+							style={styles.privacyOptionItem}
+							underlayColor={Colors.gray01}
+						>
+							<View style={styles.privacyRadioInput}>
+								<RadioInput
+									backgroundColor={Colors.gray07}
+									borderColor={Colors.gray05}
+									selectedBackgroundColor={Colors.green01}
+									selectedBorderColor={Colors.green01}
+									iconColor={Colors.white}
+									selected={hasProfession}
+								/>
+							</View>
+						</TouchableHighlight>
+					</View>
+					<View style={{ flexDirection: 'row' }}>
+						<View>
+							<Text style={styles.privacyOptionDescription}>{'Não'}</Text>
+						</View>
+						<TouchableHighlight
+							onPress={() =>
+								this.setState({
+									hideRadioInput: true,
+									hasProfession: false
+								})
+							}
+							style={styles.privacyOptionItem}
+							underlayColor={Colors.gray01}
+						>
+							<View style={styles.privacyRadioInput}>
+								<RadioInput
+									backgroundColor={Colors.gray07}
+									borderColor={Colors.gray05}
+									selectedBackgroundColor={Colors.green01}
+									selectedBorderColor={Colors.green01}
+									iconColor={Colors.white}
+									selected={!hasProfession}
+								/>
+							</View>
+						</TouchableHighlight>
+					</View>
+				</View>
+			);
+		}
+	};
+
 	_render = () => {
 		const { formValid, loadingVisible, validEmail, validPassword } = this.state;
 		const showNotification = !formValid;
@@ -156,9 +285,85 @@ class CredentialsScreen extends Component {
 				<KeyboardAwareScrollView style={styles.scrollView}>
 					{this._renderHeader()}
 					<View style={{ paddingLeft: 30, paddingRight: 30 }}>
-						<Text style={styles.loginHeader}>{'Entrar'}</Text>
+						<Text style={styles.loginHeader}>{'Cadastro'}</Text>
 						<InputField
-							labelText="Email"
+							labelText="Nome *"
+							labelTextSize={14}
+							labelColor={Colors.white}
+							textColor={Colors.white}
+							borderBottomColor={Colors.white}
+							customStyle={{ marginBottom: 30 }}
+							onChangeText={value =>
+								this.setState({
+									name: value
+								})
+							}
+							autoFocus
+							returnKeyType={'done'}
+						/>
+						{this._handleProfession()}
+						<InputField
+							labelText="Data de nascimento"
+							labelTextSize={14}
+							labelColor={Colors.white}
+							textColor={Colors.white}
+							borderBottomColor={Colors.white}
+							customStyle={{ marginBottom: 30 }}
+							onChangeText={value =>
+								this.setState({
+									birth: value
+								})
+							}
+							returnKeyType={'done'}
+							autoCapitalize={'none'}
+							keyboardType={'number-pad'}
+						/>
+						<InputField
+							labelText="Cidade *"
+							labelTextSize={14}
+							labelColor={Colors.white}
+							textColor={Colors.white}
+							borderBottomColor={Colors.white}
+							customStyle={{ marginBottom: 30 }}
+							onChangeText={value =>
+								this.setState({
+									city: value
+								})
+							}
+							returnKeyType={'done'}
+						/>
+						<InputField
+							labelText="Estado *"
+							labelTextSize={14}
+							labelColor={Colors.white}
+							textColor={Colors.white}
+							borderBottomColor={Colors.white}
+							customStyle={{ marginBottom: 30 }}
+							onChangeText={value =>
+								this.setState({
+									cityState: value
+								})
+							}
+							returnKeyType={'done'}
+						/>
+						<InputField
+							labelText="Telefone *"
+							labelTextSize={14}
+							labelColor={Colors.white}
+							textColor={Colors.white}
+							borderBottomColor={Colors.white}
+							customStyle={{ marginBottom: 30 }}
+							onChangeText={value =>
+								this.setState({
+									phone: value
+								})
+							}
+							returnKeyType={'done'}
+							autoCapitalize={'none'}
+							keyboardType={'number-pad'}
+						/>
+						<InputField
+							labelText="Email *"
 							labelTextSize={14}
 							labelColor={Colors.white}
 							textColor={Colors.white}
@@ -167,13 +372,12 @@ class CredentialsScreen extends Component {
 							customStyle={{ marginBottom: 30 }}
 							onChangeText={this.handleEmailChange}
 							showCheckmark={validEmail}
-							autoFocus
 							returnKeyType={'next'}
 							autoComplete={'email'}
 							autoCapitalize={'none'}
 						/>
 						<InputField
-							labelText="Senha"
+							labelText="Senha *"
 							labelTextSize={14}
 							labelColor={Colors.white}
 							textColor={Colors.white}
@@ -227,7 +431,7 @@ class CredentialsScreen extends Component {
 		// 	>
 		// 		<View style={styles.scrollViewWrapper}>
 		// 			<ScrollView style={styles.scrollView}>
-		// 				<Text style={styles.CredentialsScreenHeader}>Log In</Text>
+		// 				<Text style={styles.CreateAccountScreenHeader}>Log In</Text>
 		// 				<InputField
 		// 					labelText="EMAIL ADDRESS"
 		// 					labelTextSize={14}
@@ -277,7 +481,7 @@ class CredentialsScreen extends Component {
 	}
 }
 
-export default CredentialsScreen;
+export default CreateAccountScreen;
 
 // const mapStateToProps = state => ({
 //   loggedInStatus: state.loggedInStatus,
@@ -285,12 +489,12 @@ export default CredentialsScreen;
 
 // const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
 
-// CredentialsScreen.propTypes = {
-//   CredentialsScreen: PropTypes.func.isRequired,
+// CreateAccountScreen.propTypes = {
+//   CreateAccountScreen: PropTypes.func.isRequired,
 //   navigation: PropTypes.shape({
 //     navigate: PropTypes.func,
 //     goBack: PropTypes.func,
 //   }).isRequired,
 // };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(CredentialsScreen);
+// export default connect(mapStateToProps, mapDispatchToProps)(CreateAccountScreen);
