@@ -67,6 +67,23 @@
 		<string>Avenir-MediumOblique.ttf</string>
 		<string>Avenir-Oblique.ttf</string>
 		<string>Avenir-Roman.ttf</string>
+		<string>AvenirLTStd-Black.otf</string>
+		<string>AvenirLTStd-Book.otf</string>
+		<string>AvenirLTStd-Heavy.ttf</string>
+		<string>AvenirLTStd-Light.otf</string>
+		<string>AvenirLTStd-Medium.ttf</string>
+		<string>AvenirLTStd-Roman.otf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
 	</array>
 </dict>
 </plist>

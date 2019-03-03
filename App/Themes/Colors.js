@@ -42,7 +42,32 @@ const colors = {
 	lightgrey: '#585e66',
 	skinnerBlack: '#1f2833',
 	whiteAccent: '#f6f8fa',
-	lightGray: '#f1f1f1'
+	lightGray: '#f1f1f1',
+	//
+	white: '#ffffff',
+	lightNavy: '#154997',
+	ceruleanBlue: '#0078e5',
+	veryLightGray: '#d9d9d9',
+	veryLightGray_0_5: 'rgba(217, 217, 217, 0.5)',
+	lightGray: '#d9d9d9',
+	dark: '#21313a',
+	brownGrey: '#929292',
+	tomatoRed: '#e51f00',
+	lightGrassGreen: '#90dc7d',
+	lightGrassGreen_0_24: 'rgba(144, 220, 125, 0.24)',
+	mutedGreen: '#5f9a50',
+	darkishBlue: '#00469b',
+	paleGrey_0_95: '#f7f8f8',
+	hugeLightGray: '#e6e6e6',
+	whiteTwo: '#f7f7f7',
+	lightGray_0_5: 'rgba(190, 190, 190, 0.5)',
+	ceruleanBlueTwo: '#0078e5',
+	white0_9: 'rgba(255, 255, 255, 0.9)',
+	black_0_18: 'rgba(0, 0, 0, 0.18)',
+	black_0_62: 'rgba(0, 0, 0, 0.62)',
+	blackGray: 'rgba(33, 49, 58, 0.9)',
+	black_0_5: 'rgba(0, 0, 0, 0.5)'
+	// deepSkyBlue: '#007aff'
 };
 
 export default colors;
