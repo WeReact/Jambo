@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { View, Image, Modal, StyleSheet } from 'react-native';
-import { Colors, Images } from '../../Themes/';
+import { Colors, Images } from '../../Themes';
 
 export default class Loader extends Component {
 	render() {
@@ -10,10 +10,7 @@ export default class Loader extends Component {
 			<Modal animationType={animationType} transparent visible={modalVisible}>
 				<View style={styles.wrapper}>
 					<View style={styles.loaderContainer}>
-						<Image
-							style={styles.loaderImage}
-							source={require(Images.gifLoader)}
-						/>
+						<Image style={styles.loaderImage} source={Images.gifOrangeLoader} />
 					</View>
 				</View>
 			</Modal>

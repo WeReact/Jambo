@@ -12,6 +12,10 @@ import CourseScreen from '../Containers/CourseScreen';
 import ListLessonsScreen from '../Containers/ListLessonsScreen';
 import LessonDetailScreen from '../Containers/LessonDetailScreen';
 import ResultScreen from '../Containers/ResultScreen';
+import LoggedOut from '../Containers/LoggedOut';
+import LogIn from '../Containers/LogIn';
+import ForgotPassword from '../Containers/ForgotPassword';
+import TurnOnNotifications from '../Containers/TurnOnNotifications';
 
 const TabNav = TabNavigator(
 	{
@@ -56,14 +60,18 @@ const TabNav = TabNavigator(
 const AppNavigation = StackNavigator(
 	{
 		TabRoot: { screen: TabNav },
-		Login: { screen: LoginScreen },
+		LoginScreen: { screen: LoginScreen },
 		Lessons: { screen: ListLessonsScreen },
 		LessonDetail: { screen: LessonDetailScreen },
-		Result: { screen: ResultScreen }
+		Result: { screen: ResultScreen },
+		LogIn: { screen: LogIn },
+		LoggedOut: { screen: LoggedOut },
+		ForgotPassword: { screen: ForgotPassword },
+		TurnOnNotifications: { screen: TurnOnNotifications }
 	},
 	{
 		headerMode: Platform.OS === 'ios' ? 'float' : 'screen',
-		initialRouteName: 'Login',
+		initialRouteName: 'LoggedOut',
 		cardStyle: { shadowColor: 'transparent' },
 		/* header main config. */
 		navigationOptions: {

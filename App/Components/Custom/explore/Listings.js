@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import HeartButton from '../buttons/HeartButton';
 import Stars from '../Stars';
-import { Colors } from '../../Themes/';
+import { Colors } from '../../../Themes/';
 
 export default class Listings extends Component {
 	constructor(props) {

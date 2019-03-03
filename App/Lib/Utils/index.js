@@ -1,3 +1,4 @@
 import RandomColor from './RandomColor';
+import iPhoneSize from './iPhoneSize';
 
-export { RandomColor };
+export { RandomColor, iPhoneSize };

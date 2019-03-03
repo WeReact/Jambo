@@ -6,7 +6,7 @@ import {
 	StyleSheet,
 	ScrollView
 } from 'react-native';
-import { Colors } from '../../Themes/';
+import { Colors } from '../../../Themes/';
 
 export default class NoResults extends Component {
 	render() {

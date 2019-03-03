@@ -49,7 +49,9 @@ const images = {
 	clap: require('../Images/clap.png'),
 	crying: require('../Images/crying.png'),
 	smile: require('../Images/smile.png'),
-	gifLoader: require('../Images/gif/orangeLoader.gif')
+	gifOrangeLoader: require('../Images/gif/orangeLoader.gif'),
+	gifWhiteLoader: require('../Images/gif/whiteLoader.gif'),
+	airbnb: require('../Images/airbnb-logo.png')
 };
 
 export default images;

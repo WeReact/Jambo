@@ -7,7 +7,7 @@ import {
 	View,
 	Text
 } from 'react-native';
-import iPhoneSize from '../../helpers/utils';
+import { iPhoneSize } from '../../../Lib/Utils';
 
 const size = iPhoneSize();
 let cardSize = 100;

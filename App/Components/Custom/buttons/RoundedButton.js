@@ -9,7 +9,7 @@ import {
 	Platform,
 	StyleSheet
 } from 'react-native';
-import { Colors } from '../../Themes/';
+import { Colors, Images } from '../../../Themes/';
 
 export default class RoundedButton extends Component {
 	render() {
@@ -84,7 +84,7 @@ export default class RoundedButton extends Component {
 						<View style={styles.loaderContainer}>
 							<Image
 								style={styles.loaderImage}
-								source={require('../../img/whiteLoader.gif')}
+								source={Images.gifWhiteLoader}
 							/>
 						</View>
 					) : null}

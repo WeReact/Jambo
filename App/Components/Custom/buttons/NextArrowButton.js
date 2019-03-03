@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableHighlight, StyleSheet, Text, View } from 'react-native';
-import { Colors } from '../../Themes/';
-import iPhoneSize from '../../helpers/utils';
+import { Colors } from '../../../Themes';
+import { iPhoneSize } from '../../../Lib/Utils';
 
 const size = iPhoneSize();
 let buttonSize = 60;
