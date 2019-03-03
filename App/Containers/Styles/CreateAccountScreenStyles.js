@@ -44,14 +44,14 @@ const styles = StyleSheet.create({
 		padding: 20
 	},
 	privacyOptionTitle: {
-		fontSize: 16,
-		fontWeight: '400',
-		color: Colors.lightBlack
+		fontSize: 14,
+		fontWeight: '700',
+		color: Colors.white
 	},
 	privacyOptionDescription: {
 		fontSize: 14,
 		fontWeight: '200',
-		color: Colors.lightBlack,
+		color: Colors.white,
 		marginTop: 10,
 		paddingRight: 90
 	},

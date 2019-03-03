@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Colors, Navigation } from '../Themes';
 import InputField from '../Components/Custom/form/InputField';
@@ -32,7 +32,7 @@ class CreateAccountScreen extends Component {
 			phone: '',
 			validPassword: false,
 			loadingVisible: false,
-			hasProfession: false,
+			hasProfession: {},
 			hideRadioInput: false,
 			isFormed: false,
 			isStudent: false
@@ -148,81 +148,92 @@ class CreateAccountScreen extends Component {
 							})
 						}
 						returnKeyType={'done'}
+						showCheckmark={false}
+						inputType={'text'}
 					/>
 				);
 			} else {
 				return (
-					<View>
+					<View style={{ marginBottom: 20 }}>
 						<Text style={styles.privacyOptionTitle}>
 							{'Estudante ou Formado?'}
 						</Text>
-						<View style={{ flexDirection: 'row' }}>
-							<View>
-								<Text style={styles.privacyOptionDescription}>
-									{'Estudante'}
-								</Text>
-							</View>
-							<TouchableHighlight
-								onPress={() =>
-									this.setState({
-										isFormed: false,
-										isStudent: true
-									})
-								}
-								style={styles.privacyOptionItem}
-								underlayColor={Colors.gray01}
-							>
-								<View style={styles.privacyRadioInput}>
-									<RadioInput
-										backgroundColor={Colors.gray07}
-										borderColor={Colors.gray05}
-										selectedBackgroundColor={Colors.green01}
-										selectedBorderColor={Colors.green01}
-										iconColor={Colors.white}
-										selected={isStudent}
-									/>
+						{!isFormed && (
+							<View style={{ flexDirection: 'row' }}>
+								<View>
+									<Text style={styles.privacyOptionDescription}>
+										{'Estudante'}
+									</Text>
 								</View>
-							</TouchableHighlight>
-						</View>
-						<View style={styles.divider} />
-						<View style={{ flexDirection: 'row' }}>
-							<View>
-								<Text style={styles.privacyOptionDescription}>{'Formado'}</Text>
+								<TouchableOpacity
+									onPress={() =>
+										setTimeout(() => {
+											this.setState({
+												isFormed: false,
+												isStudent: true
+											});
+										}, 500)
+									}
+									style={styles.privacyOptionItem}
+									underlayColor={Colors.gray01}
+								>
+									<View style={styles.privacyRadioInput}>
+										<RadioInput
+											backgroundColor={Colors.white}
+											borderColor={Colors.orangeAccent}
+											selectedBackgroundColor={Colors.orangeAccent}
+											selectedBorderColor={Colors.white}
+											iconColor={Colors.white}
+											selected={isStudent}
+										/>
+									</View>
+								</TouchableOpacity>
 							</View>
-							<TouchableHighlight
-								onPress={() =>
-									this.setState({
-										isFormed: true,
-										isStudent: false
-									})
-								}
-								style={styles.privacyOptionItem}
-								underlayColor={Colors.gray01}
-							>
-								<View style={styles.privacyRadioInput}>
-									<RadioInput
-										backgroundColor={Colors.gray07}
-										borderColor={Colors.gray05}
-										selectedBackgroundColor={Colors.green01}
-										selectedBorderColor={Colors.green01}
-										iconColor={Colors.white}
-										selected={isFormed}
-									/>
+						)}
+						{!isStudent && (
+							<View style={{ flexDirection: 'row' }}>
+								<View>
+									<Text style={styles.privacyOptionDescription}>
+										{'Formado'}
+									</Text>
 								</View>
-							</TouchableHighlight>
-						</View>
+								<TouchableOpacity
+									onPress={() =>
+										setTimeout(() => {
+											this.setState({
+												isFormed: true,
+												isStudent: false
+											});
+										}, 500)
+									}
+									style={styles.privacyOptionItem}
+									underlayColor={Colors.gray01}
+								>
+									<View style={styles.privacyRadioInput}>
+										<RadioInput
+											backgroundColor={Colors.white}
+											borderColor={Colors.orangeAccent}
+											selectedBackgroundColor={Colors.orangeAccent}
+											selectedBorderColor={Colors.white}
+											iconColor={Colors.white}
+											selected={isFormed}
+										/>
+									</View>
+								</TouchableOpacity>
+							</View>
+						)}
 					</View>
 				);
 			}
 		} else {
 			return (
-				<View>
+				<View style={{ marginBottom: 20 }}>
 					<Text style={styles.privacyOptionTitle}>{'Você Trabalha?'}</Text>
 					<View style={{ flexDirection: 'row' }}>
 						<View>
 							<Text style={styles.privacyOptionDescription}>{'Sim'}</Text>
 						</View>
-						<TouchableHighlight
+						<TouchableOpacity
 							onPress={() =>
 								this.setState({
 									hideRadioInput: true,
@@ -234,21 +245,21 @@ class CreateAccountScreen extends Component {
 						>
 							<View style={styles.privacyRadioInput}>
 								<RadioInput
-									backgroundColor={Colors.gray07}
-									borderColor={Colors.gray05}
-									selectedBackgroundColor={Colors.green01}
-									selectedBorderColor={Colors.green01}
+									backgroundColor={Colors.white}
+									borderColor={Colors.orangeAccent}
+									selectedBackgroundColor={Colors.orangeAccent}
+									selectedBorderColor={Colors.white}
 									iconColor={Colors.white}
-									selected={hasProfession}
+									selected={hasProfession === true ? true : false}
 								/>
 							</View>
-						</TouchableHighlight>
+						</TouchableOpacity>
 					</View>
 					<View style={{ flexDirection: 'row' }}>
 						<View>
 							<Text style={styles.privacyOptionDescription}>{'Não'}</Text>
 						</View>
-						<TouchableHighlight
+						<TouchableOpacity
 							onPress={() =>
 								this.setState({
 									hideRadioInput: true,
@@ -260,15 +271,15 @@ class CreateAccountScreen extends Component {
 						>
 							<View style={styles.privacyRadioInput}>
 								<RadioInput
-									backgroundColor={Colors.gray07}
-									borderColor={Colors.gray05}
-									selectedBackgroundColor={Colors.green01}
-									selectedBorderColor={Colors.green01}
+									backgroundColor={Colors.white}
+									borderColor={Colors.orangeAccent}
+									selectedBackgroundColor={Colors.orangeAccent}
+									selectedBorderColor={Colors.white}
 									iconColor={Colors.white}
-									selected={!hasProfession}
+									selected={hasProfession === false ? true : false}
 								/>
 							</View>
-						</TouchableHighlight>
+						</TouchableOpacity>
 					</View>
 				</View>
 			);
@@ -298,8 +309,9 @@ class CreateAccountScreen extends Component {
 									name: value
 								})
 							}
-							autoFocus
 							returnKeyType={'done'}
+							inputType={'text'}
+							showCheckmark={false}
 						/>
 						{this._handleProfession()}
 						<InputField
@@ -317,6 +329,8 @@ class CreateAccountScreen extends Component {
 							returnKeyType={'done'}
 							autoCapitalize={'none'}
 							keyboardType={'number-pad'}
+							inputType={'date'}
+							showCheckmark={false}
 						/>
 						<InputField
 							labelText="Cidade *"
@@ -331,6 +345,8 @@ class CreateAccountScreen extends Component {
 								})
 							}
 							returnKeyType={'done'}
+							inputType={'text'}
+							showCheckmark={false}
 						/>
 						<InputField
 							labelText="Estado *"
@@ -345,6 +361,8 @@ class CreateAccountScreen extends Component {
 								})
 							}
 							returnKeyType={'done'}
+							inputType={'text'}
+							showCheckmark={false}
 						/>
 						<InputField
 							labelText="Telefone *"
@@ -361,6 +379,8 @@ class CreateAccountScreen extends Component {
 							returnKeyType={'done'}
 							autoCapitalize={'none'}
 							keyboardType={'number-pad'}
+							inputType={'number'}
+							showCheckmark={false}
 						/>
 						<InputField
 							labelText="Email *"

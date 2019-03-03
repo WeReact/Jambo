@@ -70,7 +70,7 @@ RadioInput.propTypes = {
 	borderColor: PropTypes.string.isRequired,
 	selectedBackgroundColor: PropTypes.string.isRequired,
 	selectedBorderColor: PropTypes.string.isRequired,
-	selected: PropTypes.bool.isRequired,
+	selected: PropTypes.any.isRequired,
 	iconColor: PropTypes.string.isRequired
 };
 

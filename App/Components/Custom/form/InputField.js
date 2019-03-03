@@ -128,6 +128,23 @@ export default class InputField extends Component {
 	}
 }
 
+InputField.defaultProps = {
+	/**
+	 *(PropsTypes)
+	 *imageProps: Images.iconBlankStateTwo,
+	 *boolProps: false,
+	 *nullProps: null,
+	 *stringProps: '',
+	 *funcProps: () => {},
+	 *numProps: 2,
+	 */
+	labelTextSize: 12,
+	labelColor: Colors.white,
+	textColor: Colors.white,
+	borderBottomColor: Colors.white,
+	autoCapitalize: 'words'
+};
+
 InputField.propTypes = {
 	labelText: PropTypes.string.isRequired,
 	labelTextSize: PropTypes.number,
@@ -139,14 +156,13 @@ InputField.propTypes = {
 	onChangeText: PropTypes.func,
 	showCheckmark: PropTypes.bool.isRequired,
 	autoFocus: PropTypes.bool,
-	autoCapitalize: PropTypes.bool,
+	autoCapitalize: PropTypes.string,
 	labelTextWeight: PropTypes.string,
 	inputStyle: PropTypes.object,
 	placeholder: PropTypes.string,
 	defaultValue: PropTypes.string,
 	returnKeyType: PropTypes.string,
-	autoComplete: PropTypes.string,
-	ref: () => {}
+	autoComplete: PropTypes.string
 };
 
 const styles = StyleSheet.create({
