@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 		paddingRight: 20
 	},
 	icon: {
-		color: Colors.green01,
+		color: Colors.orangeAccent,
 		marginBottom: 15
 	},
 	title: {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center'
 	},
 	skipButton: {
-		borderColor: Colors.green01,
+		borderColor: Colors.orangeAccent,
 		width: 100,
 		borderWidth: 2,
 		paddingTop: 12,

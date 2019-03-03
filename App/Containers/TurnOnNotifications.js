@@ -12,10 +12,11 @@ const navigateToTabsAction = NavigationActions.navigate({
 
 export default class TurnOnNotifications extends Component {
 	static navigationOptions = () => ({
-		headerLeft: null,
-		headerStyle: Navigation,
-		headerTransparent: true,
-		gesturesEnabled: false
+		header: null
+		// headerLeft: null,
+		// headerStyle: Navigation,
+		// headerTransparent: true,
+		// gesturesEnabled: false
 	});
 
 	constructor(props) {
@@ -55,25 +56,27 @@ export default class TurnOnNotifications extends Component {
 	render() {
 		const { pressNotifyBtn, pressSkipBtn } = this.state;
 		const { navigation } = this.props;
-		const notifyBtnColor = pressNotifyBtn ? Colors.green02 : Colors.green01;
+		const { navigate } = navigation;
+		const notifyBtnColor = pressNotifyBtn
+			? Colors.orangeAccent
+			: Colors.orangeAccent;
 		return (
 			<View style={styles.wrapper}>
 				<View style={styles.content}>
 					<Icon name="comments-o" size={46} style={styles.icon} />
-					<Text style={styles.title}>Turn on notifications?</Text>
+					<Text style={styles.title}>{'Ativar as notificações?'}</Text>
 					<Text style={styles.description}>
-						We can let you know when someone messages you, or notify you about
-						other important account activity.
+						{'Podemos te notificar sobre algo importante.'}
 					</Text>
 					<TouchableHighlight
 						style={[{ backgroundColor: notifyBtnColor }, styles.notifyButton]}
-						onPress={() => navigation.dispatch(navigateToTabsAction)}
+						onPress={() => navigate('CourseScreenTab')}
 						onShowUnderlay={this.handleNotifyBtnShowUnderlay}
 						onHideUnderlay={this.handleNotifyBtnHideUnderlay}
-						underlayColor={Colors.green02}
+						underlayColor={Colors.orangeAccent}
 					>
 						<Text style={[{ color: Colors.white }, styles.buttonText]}>
-							Yes, notify me
+							{'Sim, me avise'}
 						</Text>
 					</TouchableHighlight>
 					<TouchableHighlight
@@ -81,13 +84,13 @@ export default class TurnOnNotifications extends Component {
 							{ backgroundColor: pressSkipBtn ? Colors.gray01 : 'transparent' },
 							styles.skipButton
 						]}
-						onPress={() => navigation.dispatch(navigateToTabsAction)}
+						onPress={() => navigate('CourseScreenTab')}
 						onShowUnderlay={this.handleSkipBtnShowUnderlay}
 						onHideUnderlay={this.handleSkipBtnHideUnderlay}
 						underlayColor={Colors.gray01}
 					>
-						<Text style={[{ color: Colors.green01 }, styles.buttonText]}>
-							Skip
+						<Text style={[{ color: Colors.orangeAccent }, styles.buttonText]}>
+							{'Pular'}
 						</Text>
 					</TouchableHighlight>
 				</View>

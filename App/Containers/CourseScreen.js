@@ -13,6 +13,7 @@ import '@firebase/auth';
 import '@firebase/database';
 import { Images, Colors } from '../Themes';
 import { NavigationBar } from '../Components';
+import Loader from '../Components/Custom/Loader';
 import { Spinner, LineSeparator } from '../Components/Common';
 // Styles
 import styles from './Styles/CourseScreenStyles';
@@ -184,16 +185,6 @@ class CourseScreen extends Component {
 
 	render() {
 		const { courses } = this.state;
-		if (!courses) {
-			return (
-				<Spinner
-					open={true}
-					disableOnPressSpinner
-					containerLoadingStyle={{ backgroundColor: Colors.snow, opacity: 1 }}
-					loadingColor={Colors.orangeAccent}
-				/>
-			);
-		}
 		return (
 			<View style={styles.mainContainer}>
 				<NavigationBar title={'Cursos'} />
@@ -203,6 +194,7 @@ class CourseScreen extends Component {
 							{this._renderSwipeableCardsList()}
 						</View>
 					</View>
+					<Loader modalVisible={!courses} animationType="fade" />
 				</ScrollView>
 
 				{<Spinner />}

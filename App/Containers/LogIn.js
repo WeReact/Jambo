@@ -57,12 +57,15 @@ class LogIn extends Component {
 
 	handleNextButton = () => {
 		this.setState({ loadingVisible: true });
-		const { logIn, navigation } = this.props;
+		const { emailAddress, password } = this.state;
+		const { navigation } = this.props;
 		const { navigate } = navigation;
-
+		let email = 'sam@mail.com';
+		let pass = '12345';
+		const doubleCheck =
+			emailAddress === email && password === pass ? true : false;
 		setTimeout(() => {
-			const { emailAddress, password } = this.state;
-			if (logIn(emailAddress, password)) {
+			if (doubleCheck) {
 				this.setState({ formValid: true, loadingVisible: false });
 				navigate('TurnOnNotifications');
 			} else {
@@ -132,14 +135,17 @@ class LogIn extends Component {
 						icon={<Icon name="angle-left" color={Colors.white} size={30} />}
 					/>
 				</View>
-				<View>
-					<NavBarButton
-						handleButtonPress={() => navigation.navigate('ForgotPassword')}
-						location="right"
-						color={Colors.white}
-						text="Esqueci Senha"
-					/>
-				</View>
+
+				{/*
+					<View>
+						<NavBarButton
+							handleButtonPress={() => navigation.navigate('ForgotPassword')}
+							location="right"
+							color={Colors.white}
+							text="Esqueci Senha"
+						/>
+					</View>
+				*/}
 			</View>
 		);
 	};
