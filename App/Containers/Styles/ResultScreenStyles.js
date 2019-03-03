@@ -22,11 +22,12 @@ export default StyleSheet.create({
 		alignItems: 'center'
 	},
 	wrapperHeaderLeft: {
-		marginRight: 16
+		marginTop: 20,
+		marginLeft: 16
 	},
 	iconArrowLeft: {
-		height: 14,
-		width: 14
+		width: 24,
+		height: 24
 	},
 	sectionTitleStyle: {
 		fontWeight: 'normal',

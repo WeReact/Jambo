@@ -1,6 +1,8 @@
 import { StyleSheet, Platform } from 'react-native';
 import { Metrics, Colors, Fonts, ApplicationStyles } from '../../../Themes';
 
+const { flashcardComponentMetrics } = Metrics;
+
 export default StyleSheet.create({
 	...ApplicationStyles.screen,
 	container: {
@@ -189,6 +191,7 @@ export default StyleSheet.create({
 		flex: 1
 	},
 	questionsContainer: {
+		...flashcardComponentMetrics.questionsContainer,
 		backgroundColor: '#fff',
 		flex: 1
 	},

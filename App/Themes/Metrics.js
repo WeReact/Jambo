@@ -912,28 +912,18 @@ buttonComponentMetrics
 		}
 	},
 	/**
-buttonComponentMetrics
+flashcardComponentMetrics
 */
-	carouselComponentMetrics: {
-		containerCarouselItem: {
-			width: size(90),
-			height: size(61)
-		},
-		carouselThumbnailOpenStyle: {
-			width: pw(100),
-			height: size(173)
-		},
-		carouselThumbnailCloseStyle: {
-			width: size(90),
-			height: size(61)
-		},
-		buttonStyle: {
-			height: size(40),
-			width: pw(90),
-			borderRadius: size(20)
-		},
-		horizontalSeparator: {
-			marginRight: size(5)
+	flashcardComponentMetrics: {
+		questionsContainer: {
+			...Platform.select({
+				ios: {
+					marginBottom: DeviceInfo.hasNotch() ? size(20) : size(0)
+				},
+				android: {
+					marginBottom: size(0)
+				}
+			})
 		}
 	}
 };

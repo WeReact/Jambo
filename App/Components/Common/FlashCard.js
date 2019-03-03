@@ -6,13 +6,15 @@ import {
 	Text,
 	Image,
 	ScrollView,
-	Alert
+	Alert,
+	SafeAreaView,
+	StatusBar
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { NavigationActions } from 'react-navigation';
 
-import { Images } from '../../Themes';
+import { Images, Colors } from '../../Themes';
 
 //styles
 import styles from './Styles/FlashCardStyles';
@@ -74,7 +76,8 @@ class FlashCard extends Component {
 		} = this.props;
 		const { count } = this.state;
 		return (
-			<View style={styles.questionsWrapper}>
+			<SafeAreaView style={{ flex: 0, backgroundColor: Colors.white }}>
+				<StatusBar barStyle="dark-content" />
 				<Modal animationType="slide" transparent={false} visible={open}>
 					<View style={styles.questionsContainer}>
 						<View style={styles.questionsWrapperHeader}>
@@ -194,7 +197,7 @@ class FlashCard extends Component {
 						</View>
 					</View>
 				</Modal>
-			</View>
+			</SafeAreaView>
 		);
 	}
 

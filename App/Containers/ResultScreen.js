@@ -151,21 +151,19 @@ class ResultScreen extends Component {
 		const { navigation } = this.props;
 
 		return (
-			<ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
-				<View style={styles.wrapperSectionTitle}>
-					<TouchableOpacity
-						style={styles.wrapperHeaderLeft}
-						onPress={() => {
-							navigation.goBack();
-						}}
-					>
-						<Image
-							style={styles.iconArrowLeft}
-							source={Images.iconClose}
-							resizeMode={'contain'}
-						/>
-					</TouchableOpacity>
-				</View>
+			<ScrollView style={{ flex: 1, backgroundColor: Colors.white }}>
+				<TouchableOpacity
+					style={styles.wrapperHeaderLeft}
+					onPress={() => {
+						navigation.goBack();
+					}}
+				>
+					<Image
+						style={styles.iconArrowLeft}
+						source={Images.iconClose}
+						resizeMode={'contain'}
+					/>
+				</TouchableOpacity>
 				{this._handleResult()}
 			</ScrollView>
 		);
