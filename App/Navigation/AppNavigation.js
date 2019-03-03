@@ -13,7 +13,7 @@ import ListLessonsScreen from '../Containers/ListLessonsScreen';
 import LessonDetailScreen from '../Containers/LessonDetailScreen';
 import ResultScreen from '../Containers/ResultScreen';
 import OnboardingScreen from '../Containers/OnboardingScreen';
-import LogIn from '../Containers/LogIn';
+import CredentialsScreen from '../Containers/CredentialsScreen';
 import ForgotPassword from '../Containers/ForgotPassword';
 import TurnOnNotifications from '../Containers/TurnOnNotifications';
 
@@ -65,13 +65,13 @@ const AppNavigation = StackNavigator(
 		LessonDetail: { screen: LessonDetailScreen },
 		Result: { screen: ResultScreen },
 		Onboarding: { screen: OnboardingScreen },
-		LogIn: { screen: LogIn },
+		Credentials: { screen: CredentialsScreen },
 		ForgotPassword: { screen: ForgotPassword },
 		TurnOnNotifications: { screen: TurnOnNotifications }
 	},
 	{
 		headerMode: Platform.OS === 'ios' ? 'float' : 'screen',
-		initialRouteName: 'TurnOnNotifications',
+		initialRouteName: 'Onboarding',
 		cardStyle: { shadowColor: 'transparent' },
 		/* header main config. */
 		navigationOptions: {

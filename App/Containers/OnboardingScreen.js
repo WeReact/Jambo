@@ -11,7 +11,6 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors, Navigation, Images } from '../Themes';
 import RoundedButton from '../Components/Custom/buttons/RoundedButton';
-import NavBarButton from '../Components/Custom/buttons/NavBarButton';
 import styles from './Styles/OnboardingScreenStyles';
 
 export default class LoggedOut extends Component {
@@ -72,7 +71,7 @@ export default class LoggedOut extends Component {
 							<RoundedButton
 								text="Entrar"
 								textColor={Colors.white}
-								handleOnPress={() => navigate('LogIn')}
+								handleOnPress={() => navigate('Credentials')}
 							/>
 							<RoundedButton
 								text={'Cadastre-se agora!'}

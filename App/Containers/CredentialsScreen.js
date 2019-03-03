@@ -12,7 +12,7 @@ import NextArrowButton from '../Components/Custom/buttons/NextArrowButton';
 import Notification from '../Components/Custom/Notification';
 import Loader from '../Components/Custom/Loader';
 import NavBarButton from '../Components/Custom/buttons/NavBarButton';
-import styles from './Styles/LogIn';
+import styles from './Styles/CredentialsScreenStyles';
 
 class LogIn extends Component {
 	static navigationOptions = ({ navigation }) => ({
@@ -67,7 +67,7 @@ class LogIn extends Component {
 		setTimeout(() => {
 			if (doubleCheck) {
 				this.setState({ formValid: true, loadingVisible: false });
-				navigate('TurnOnNotifications');
+				navigate('CourseScreenTab');
 			} else {
 				this.setState({ formValid: false, loadingVisible: false });
 			}
@@ -94,16 +94,12 @@ class LogIn extends Component {
 	};
 
 	handlePasswordChange = password => {
-		const { validPassword } = this.state;
-
 		this.setState({ password });
 
-		if (!validPassword) {
-			if (password.length > 4) {
-				// Password has to be at least 4 characters long
-				this.setState({ validPassword: true });
-			}
-		} else if (password <= 4) {
+		if (password.length > 4) {
+			// Password has to be at least 4 characters long
+			this.setState({ validPassword: true });
+		} else {
 			this.setState({ validPassword: false });
 		}
 	};
@@ -184,6 +180,7 @@ class LogIn extends Component {
 							borderBottomColor={Colors.white}
 							inputType="password"
 							customStyle={{ marginBottom: 30 }}
+							onChangeText={value => this.handlePasswordChange(value)}
 							onChangeText={this.handlePasswordChange}
 							showCheckmark={validPassword}
 							returnKeyType={'done'}
@@ -209,9 +206,8 @@ class LogIn extends Component {
 					<Notification
 						showNotification={showNotification}
 						handleCloseNotification={this.handleCloseNotification}
-						type="Error"
-						firstLine="Those credentials don't look right."
-						secondLine="Please try again."
+						type="Ops!"
+						firstLine="Email ou Senha inválidos"
 					/>
 				</View>
 			</View>

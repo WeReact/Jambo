@@ -50,46 +50,46 @@ class ProfileScreen extends Component {
 		super(props);
 
 		this.state = {
-            user: {}
-        };
+			user: {}
+		};
 	}
-    
-    componentDidMount() {
-       this._getCurrentUser();
-    }
-    
-    _getCurrentUser(){
-        const user = {
-            name: "Pedro Neto",
-            email: "pedro.neto@email.com",
-            photo: "https://img.icons8.com/color/1600/engineer.png"
-        };
-        this.setState({user});
-    };
 
-    _logoutClean() {
-        
-    };
+	componentDidMount() {
+		this._getCurrentUser();
+	}
+
+	_getCurrentUser() {
+		const user = {
+			name: 'Pedro Neto',
+			email: 'pedro.neto@email.com',
+			photo: 'https://img.icons8.com/color/1600/engineer.png'
+		};
+		this.setState({ user });
+	}
+
+	_logoutClean() {}
 
 	render() {
-        const { navigation } = this.props;
-        const { user } = this.state;
+		const { navigation } = this.props;
+		const { user } = this.state;
 		return (
 			<View style={styles.mainContainer}>
 				<ScrollView style={styles.container}>
-					<View style={styles.header}></View>
-                    <Image source={{uri: user.photo}} style={styles.avatarContent} />
-                    <View style={styles.bodyContent}>
-                        <Text style={styles.nameContent}>{user.name}</Text>
-                        <Text style={styles.emailContent}>{user.email}</Text>
-                        <View style={styles.logoutContent}>
-                            <Button
-                                labelButton={'Logout'}
-                                buttonStyle={styles.actionButtonStyle}
-                                onPress={() => {navigation.navigate('Login')}}
-                            />
-                        </View>
-                    </View>
+					<View style={styles.header} />
+					<Image source={{ uri: user.photo }} style={styles.avatarContent} />
+					<View style={styles.bodyContent}>
+						<Text style={styles.nameContent}>{user.name}</Text>
+						<Text style={styles.emailContent}>{user.email}</Text>
+						<View style={styles.logoutContent}>
+							<Button
+								labelButton={'Logout'}
+								buttonStyle={styles.actionButtonStyle}
+								onPress={() => {
+									navigation.navigate('Onboarding');
+								}}
+							/>
+						</View>
+					</View>
 				</ScrollView>
 			</View>
 		);

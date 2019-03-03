@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { iPhoneSize } from '../../Lib/Utils';
-import { Colors } from '../../Themes/';
+import { Colors } from '../../Themes';
 
 let headingTextSize = 30;
 if (iPhoneSize() === 'small') {
