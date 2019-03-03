@@ -5,12 +5,8 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 
 import { Colors } from '../Themes';
 
-import LaunchScreen from '../Containers/LaunchScreen';
 import NewsScreen from '../Containers/NewsScreen';
 import ProfileScreen from '../Containers/ProfileScreen';
-import AboutScreen from '../Containers/AboutScreen';
-import WelcomeScreen from '../Containers/WelcomeScreen';
-import InputScreen from '../Containers/InputScreen';
 import LoginScreen from '../Containers/LoginScreen';
 import CourseScreen from '../Containers/CourseScreen';
 import ListLessonsScreen from '../Containers/ListLessonsScreen';
@@ -60,8 +56,6 @@ const TabNav = TabNavigator(
 const AppNavigation = StackNavigator(
 	{
 		TabRoot: { screen: TabNav },
-		Welcome: { screen: WelcomeScreen },
-		Input: { screen: InputScreen },
 		Login: { screen: LoginScreen },
 		Lessons: { screen: ListLessonsScreen },
 		LessonDetail: { screen: LessonDetailScreen },
