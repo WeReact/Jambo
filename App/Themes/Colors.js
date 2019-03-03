@@ -36,7 +36,6 @@ const colors = {
 	warning: '#f5a623',
 	purpleAccent: '#6c40be',
 	grayAccent: '#676767',
-	black: '#1f2833',
 	orangeAccent: '#e36d0d',
 	greyAccent: '#a0a0a0',
 	lightgrey: '#585e66',
@@ -66,8 +65,25 @@ const colors = {
 	black_0_18: 'rgba(0, 0, 0, 0.18)',
 	black_0_62: 'rgba(0, 0, 0, 0.62)',
 	blackGray: 'rgba(33, 49, 58, 0.9)',
-	black_0_5: 'rgba(0, 0, 0, 0.5)'
+	black_0_5: 'rgba(0, 0, 0, 0.5)',
 	// deepSkyBlue: '#007aff'
+	black: '#000000',
+	lightBlack: '#484848',
+	green01: '#008388',
+	green02: '#02656b',
+	darkOrange: '#d93900',
+	lightGray: '#d8d8d8',
+	pink: '#fc4c54',
+	gray01: '#f3f3f3',
+	gray02: '#919191',
+	gray03: '#b3b3b3',
+	gray04: '#484848',
+	gray05: '#dadada',
+	gray06: '#ebebeb',
+	gray07: '#f2f2f2',
+	brown01: '#ad8763',
+	brown02: '#7d4918',
+	blue: '#4995cd'
 };
 
 export default colors;
