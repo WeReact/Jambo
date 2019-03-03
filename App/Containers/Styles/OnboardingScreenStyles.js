@@ -6,7 +6,7 @@
 
 import { StyleSheet } from 'react-native';
 import { iPhoneSize } from '../../Lib/Utils';
-import { Colors } from '../../Themes/';
+import { Colors, Metrics } from '../../Themes';
 
 let termsTextSize = 13;
 let headingTextSize = 30;
@@ -19,19 +19,25 @@ const styles = StyleSheet.create({
 	wrapper: {
 		flex: 1,
 		display: 'flex',
-		backgroundColor: Colors.green01
+		backgroundColor: Colors.orangeAccent
 	},
 	welcomeWrapper: {
 		flex: 1,
 		display: 'flex',
 		marginTop: 30,
-		padding: 20
+		padding: 20,
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	logo: {
-		width: 50,
-		height: 50,
-		marginTop: 50,
-		marginBottom: 40
+		// width: 50,
+		// height: 50,
+		// marginTop: 50,
+		// marginBottom: 40
+		marginTop: Metrics.doubleSection,
+		height: Metrics.images.logo,
+		width: Metrics.images.logo,
+		resizeMode: 'contain'
 	},
 	welcomeText: {
 		fontSize: headingTextSize,
@@ -40,13 +46,16 @@ const styles = StyleSheet.create({
 		marginBottom: 40
 	},
 	facebookButtonIcon: {
-		color: Colors.green01,
+		color: Colors.orangeAccent,
 		position: 'relative',
 		left: 20,
 		zIndex: 8
 	},
 	moreOptionsButton: {
-		marginTop: 10
+		marginTop: 10,
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	moreOptionsButtonText: {
 		color: Colors.white,

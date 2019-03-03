@@ -35,7 +35,7 @@ const images = {
 	iconCategory2: require('../Images/Icons/icon-category-2.png'),
 	jambo: require('../Images/logo-jambo.png'),
 	iconFb: require('../Images/Icons/icon-fb.png'),
-	newJambo: require('../Images/new-logo-jambo.png'),
+	newJambo: require('../Images/jambo-logo.png'),
 	iconFree: require('../Images/Icons/icon-free.png'),
 	lessonDetail: require('../Images/lesson-detail.png'),
 	logoYoutube: require('../Images/logo-youtube.png'),
