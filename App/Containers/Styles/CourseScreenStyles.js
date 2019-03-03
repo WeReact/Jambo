@@ -5,6 +5,7 @@ export default StyleSheet.create({
 	...ApplicationStyles.screen,
 	container: {
 		paddingBottom: Metrics.baseMargin
+		// paddingTop: 100 // with searchBar
 	},
 	logo: {
 		marginTop: Metrics.doubleSection,

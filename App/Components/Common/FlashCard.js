@@ -154,14 +154,6 @@ class FlashCard extends Component {
 						</View>
 
 						<View style={styles.questionsFooter}>
-							<View style={styles.tapToFlipWrapper}>
-								<TouchableOpacity onPress={() => {}}>
-									<Image
-										source={Images.iconArrowLeftWhite}
-										style={styles.tapToFlipImage}
-									/>
-								</TouchableOpacity>
-							</View>
 							<View style={styles.footerWrapper}>
 								<TouchableOpacity
 									disabled={this.state.flipButton ? true : false}

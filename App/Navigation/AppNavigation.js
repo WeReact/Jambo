@@ -71,7 +71,7 @@ const AppNavigation = StackNavigator(
 	},
 	{
 		headerMode: Platform.OS === 'ios' ? 'float' : 'screen',
-		initialRouteName: 'Onboarding',
+		initialRouteName: 'TurnOnNotifications',
 		cardStyle: { shadowColor: 'transparent' },
 		/* header main config. */
 		navigationOptions: {

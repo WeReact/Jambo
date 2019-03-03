@@ -14,6 +14,8 @@ import '@firebase/database';
 import { Images, Colors } from '../Themes';
 import { NavigationBar } from '../Components';
 import Loader from '../Components/Custom/Loader';
+import Listings from '../Components/Custom/explore/Listings';
+import SearchBar from '../Components/Custom/SearchBar';
 import { Spinner, LineSeparator } from '../Components/Common';
 // Styles
 import styles from './Styles/CourseScreenStyles';
@@ -172,6 +174,28 @@ class CourseScreen extends Component {
 		);
 	};
 
+	renderListings = () => {
+		const { courses } = this.state;
+		const { navigation } = this.props;
+		const keyGenerator = () =>
+			Math.random()
+				.toString(36)
+				.substr(2, 10);
+		return (
+			<View key={`listing-${keyGenerator}`}>
+				<Listings
+					key={`listing-item-${keyGenerator}`}
+					title={'Engenharia'}
+					boldTitle={'222222'}
+					listings={courses}
+					// showAddToFav={listing.showAddToFav}
+					// handleAddToFav={this.handleAddToFav}
+					// favouriteListings={this.state.favouriteListings}
+				/>
+			</View>
+		);
+	};
+
 	/**
 	 * render the line separator between items
 	 * @author samuelmataraso
@@ -187,10 +211,12 @@ class CourseScreen extends Component {
 		const { courses } = this.state;
 		return (
 			<View style={styles.mainContainer}>
+				{/*<SearchBar />*/}
 				<NavigationBar title={'Cursos'} />
 				<ScrollView style={styles.container}>
 					<View style={styles.wrapperContent}>
 						<View style={styles.wrapperSwipeableCardsList}>
+							{/*this.renderListings()*/}
 							{this._renderSwipeableCardsList()}
 						</View>
 					</View>

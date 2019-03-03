@@ -27,39 +27,39 @@ export default class Listings extends Component {
 			handleAddToFav,
 			favouriteListings
 		} = this.props;
-		return listings.map((listing, index) => (
-			<TouchableHighlight style={styles.card} key={`listing-${index}`}>
-				<View>
-					{showAddToFav ? (
-						<View style={styles.addToFavoriteBtn}>
-							<HeartButton
-								color={Colors.white}
-								selectedColor={Colors.pink}
-								selected={favouriteListings.indexOf(listing.id) > -1}
-								onPress={() => handleAddToFav(listing)}
-							/>
-						</View>
-					) : null}
-					<Image
-						style={styles.image}
-						resizeMode="contain"
-						source={listing.photo}
-					/>
-					<Text style={[{ color: listing.color }, styles.listingType]}>
-						{listing.type}
-					</Text>
-					<Text style={styles.listingTitle} numberOfLines={2}>
-						{listing.title}
-					</Text>
-					<Text style={styles.listingPrice}>
-						${listing.price} {listing.priceType}
-					</Text>
-					{listing.stars > 0 ? (
-						<Stars votes={listing.stars} size={10} color={Colors.green02} />
-					) : null}
-				</View>
-			</TouchableHighlight>
-		));
+		if (listings) {
+			return listings.map((listing, index) => (
+				<TouchableHighlight style={styles.card} key={`listing-${index}`}>
+					<View>
+						{showAddToFav ? (
+							<View style={styles.addToFavoriteBtn}>
+								<HeartButton
+									color={Colors.white}
+									selectedColor={Colors.pink}
+									selected={favouriteListings.indexOf(listing.id) > -1}
+									onPress={() => handleAddToFav(listing)}
+								/>
+							</View>
+						) : null}
+						<Image
+							style={styles.image}
+							resizeMode="contain"
+							source={{ uri: listing.thumbnail }}
+						/>
+						<Text style={[{ color: Colors.tomatoRed }, styles.listingType]}>
+							{listing.title}
+						</Text>
+						<Text style={styles.listingTitle} numberOfLines={2}>
+							{listing.about}
+						</Text>
+						<Text style={styles.listingPrice}>{listing.totalHours}</Text>
+						{listing.stars && listing.stars > 0 ? (
+							<Stars votes={listing.stars} size={10} color={Colors.green02} />
+						) : null}
+					</View>
+				</TouchableHighlight>
+			));
+		}
 	}
 
 	render() {
