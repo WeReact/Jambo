@@ -140,7 +140,8 @@ class CredentialsScreen extends Component {
 							onChangeText={this.handleEmailChange}
 							showCheckmark={validEmail}
 							autoFocus
-							returnKeyType={'next'}
+							keyboardType={'email-address'}
+							returnKeyType={'done'}
 							autoComplete={'email'}
 							autoCapitalize={'none'}
 						/>

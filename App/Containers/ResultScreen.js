@@ -5,7 +5,8 @@ import {
 	Image,
 	View,
 	TouchableOpacity,
-	Platform
+	Animated,
+	Easing
 } from 'react-native';
 import { Images, Colors, Metrics } from '../Themes';
 
@@ -20,10 +21,25 @@ class ResultScreen extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {};
+		this.state = {
+			scaleCheckmarkValue: new Animated.Value(0),
+			showCheckmark: false
+		};
 	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		setTimeout(() => {
+			this.setState({ showCheckmark: true });
+		}, 500);
+	}
+
+	scaleCheckmark(value) {
+		Animated.timing(this.state.scaleCheckmarkValue, {
+			toValue: value,
+			duration: 400,
+			easing: Easing.easeOutBack
+		}).start();
+	}
 
 	_handleResult = () => {
 		const { navigation } = this.props;
@@ -38,14 +54,24 @@ class ResultScreen extends Component {
 	};
 
 	_renderResultOk = note => {
+		const { scaleCheckmarkValue, showCheckmark } = this.state;
+		const iconScale = scaleCheckmarkValue.interpolate({
+			inputRange: [0, 0.5, 1],
+			outputRange: [0.01, 1.6, 1]
+		});
+
+		const scaleValue = showCheckmark ? 1 : 0;
+		this.scaleCheckmark(scaleValue);
 		const lessonNote = note;
 		return (
 			<View style={styles.wrapperInfo}>
-				<Image
-					style={{ width: 80, height: 160 }}
-					source={Images.cool}
-					resizeMode={'contain'}
-				/>
+				<Animated.View style={[{ transform: [{ scale: iconScale }] }]}>
+					<Image
+						style={{ width: 80, height: 160 }}
+						source={Images.cool}
+						resizeMode={'contain'}
+					/>
+				</Animated.View>
 				<View style={{ alignItems: 'center', justifyContent: 'center' }}>
 					<Text
 						style={{
@@ -67,44 +93,56 @@ class ResultScreen extends Component {
 					>
 						{'Você passou nesse curso com nota ' + lessonNote + '!'}
 					</Text>
-					<View
-						style={{
-							alignItems: 'center',
-							justifyContent: 'space-between',
-							flexDirection: 'row',
-							marginTop: 10
-						}}
-					>
-						<Image
-							style={{ width: 40, height: 40 }}
-							source={Images.clap}
-							resizeMode={'contain'}
-						/>
-						<Image
-							style={{ width: 40, height: 40 }}
-							source={Images.clap}
-							resizeMode={'contain'}
-						/>
-						<Image
-							style={{ width: 40, height: 40 }}
-							source={Images.clap}
-							resizeMode={'contain'}
-						/>
-					</View>
+					<Animated.View style={[{ transform: [{ scale: iconScale }] }]}>
+						<View
+							style={{
+								alignItems: 'center',
+								justifyContent: 'space-between',
+								flexDirection: 'row',
+								marginTop: 10
+							}}
+						>
+							<Image
+								style={{ width: 40, height: 40 }}
+								source={Images.clap}
+								resizeMode={'contain'}
+							/>
+							<Image
+								style={{ width: 40, height: 40 }}
+								source={Images.clap}
+								resizeMode={'contain'}
+							/>
+							<Image
+								style={{ width: 40, height: 40 }}
+								source={Images.clap}
+								resizeMode={'contain'}
+							/>
+						</View>
+					</Animated.View>
 				</View>
 			</View>
 		);
 	};
 
 	_renderResultNok = note => {
+		const { scaleCheckmarkValue, showCheckmark } = this.state;
+		const iconScale = scaleCheckmarkValue.interpolate({
+			inputRange: [0, 0.5, 1],
+			outputRange: [0.01, 1.6, 1]
+		});
+
+		const scaleValue = showCheckmark ? 1 : 0;
+		this.scaleCheckmark(scaleValue);
 		const lessonNote = note;
 		return (
 			<View style={styles.wrapperInfo}>
-				<Image
-					style={{ width: 80, height: 160 }}
-					source={Images.crying}
-					resizeMode={'contain'}
-				/>
+				<Animated.View style={[{ transform: [{ scale: iconScale }] }]}>
+					<Image
+						style={{ width: 80, height: 160 }}
+						source={Images.crying}
+						resizeMode={'contain'}
+					/>
+				</Animated.View>
 				<View style={{ alignItems: 'center', justifyContent: 'center' }}>
 					<Text
 						style={{
@@ -118,30 +156,32 @@ class ResultScreen extends Component {
 							lessonNote +
 							'.'}
 					</Text>
-					<View
-						style={{
-							alignItems: 'center',
-							justifyContent: 'space-between',
-							flexDirection: 'row',
-							marginTop: 10
-						}}
-					>
-						<Image
-							style={{ width: 40, height: 40 }}
-							source={Images.smile}
-							resizeMode={'contain'}
-						/>
-						<Image
-							style={{ width: 40, height: 40 }}
-							source={Images.smile}
-							resizeMode={'contain'}
-						/>
-						<Image
-							style={{ width: 40, height: 40 }}
-							source={Images.smile}
-							resizeMode={'contain'}
-						/>
-					</View>
+					<Animated.View style={[{ transform: [{ scale: iconScale }] }]}>
+						<View
+							style={{
+								alignItems: 'center',
+								justifyContent: 'space-between',
+								flexDirection: 'row',
+								marginTop: 10
+							}}
+						>
+							<Image
+								style={{ width: 40, height: 40 }}
+								source={Images.smile}
+								resizeMode={'contain'}
+							/>
+							<Image
+								style={{ width: 40, height: 40 }}
+								source={Images.smile}
+								resizeMode={'contain'}
+							/>
+							<Image
+								style={{ width: 40, height: 40 }}
+								source={Images.smile}
+								resizeMode={'contain'}
+							/>
+						</View>
+					</Animated.View>
 				</View>
 			</View>
 		);

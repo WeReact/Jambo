@@ -416,7 +416,7 @@ class CreateAccountScreen extends Component {
 							onChangeText={this.handleEmailChange}
 							showCheckmark={validEmail}
 							keyboardType={'email-address'}
-							returnKeyType={'next'}
+							returnKeyType={'done'}
 							autoComplete={'email'}
 							autoCapitalize={'none'}
 						/>
