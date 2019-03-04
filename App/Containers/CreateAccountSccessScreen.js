@@ -54,8 +54,12 @@ export default class CreateAccountSccessScreen extends Component {
 	_handleResetAction = () => {
 		const { navigation } = this.props;
 		const resetAction = NavigationActions.reset({
-			index: 0,
+			index: 1,
 			actions: [
+				NavigationActions.navigate({
+					routeName: 'Onboarding',
+					params: {}
+				}),
 				NavigationActions.navigate({
 					routeName: 'Credentials',
 					params: {}
