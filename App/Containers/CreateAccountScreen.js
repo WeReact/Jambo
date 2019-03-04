@@ -39,21 +39,13 @@ class CreateAccountScreen extends Component {
 	}
 
 	handleNextButton = () => {
-		this.setState({ loadingVisible: true });
-		const { emailAddress, password } = this.state;
 		const { navigation } = this.props;
 		const { navigate } = navigation;
-		let email = 'sam@mail.com';
-		let pass = '12345';
-		const doubleCheck =
-			emailAddress === email && password === pass ? true : false;
+		this.setState({ loadingVisible: true });
+
 		setTimeout(() => {
-			if (doubleCheck) {
-				this.setState({ formValid: true, loadingVisible: false });
-				navigate('CourseScreenTab');
-			} else {
-				this.setState({ formValid: false, loadingVisible: false });
-			}
+			this.setState({ formValid: true, loadingVisible: false });
+			navigate('CreateAccountSccess');
 		}, 2000);
 	};
 
@@ -310,9 +302,9 @@ class CreateAccountScreen extends Component {
 			// !birth ||
 			!city ||
 			!cityState ||
-			!phone ||
+			(!phone || phone.length < 16) ||
 			!emailAddress ||
-			!password
+			(!password || password.length < 5)
 				? true
 				: false;
 		return (
@@ -333,6 +325,7 @@ class CreateAccountScreen extends Component {
 									name: value
 								})
 							}
+							autoFocus
 							returnKeyType={'done'}
 							inputType={'text'}
 							showCheckmark={false}
@@ -466,7 +459,7 @@ class CreateAccountScreen extends Component {
 										/>
 									</View>
 								}
-								handleOnPress={this.handleCreateList}
+								handleOnPress={this.handleNextButton}
 							/>
 						</View>
 					</View>

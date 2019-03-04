@@ -17,6 +17,7 @@ import CredentialsScreen from '../Containers/CredentialsScreen';
 import ForgotPassword from '../Containers/ForgotPassword';
 import TurnOnNotifications from '../Containers/TurnOnNotifications';
 import CreateAccountScreen from '../Containers/CreateAccountScreen';
+import CreateAccountSccessScreen from '../Containers/CreateAccountSccessScreen';
 
 const TabNav = TabNavigator(
 	{
@@ -69,7 +70,8 @@ const AppNavigation = StackNavigator(
 		Credentials: { screen: CredentialsScreen },
 		ForgotPassword: { screen: ForgotPassword },
 		TurnOnNotifications: { screen: TurnOnNotifications },
-		CreateAccountScreen: { screen: CreateAccountScreen }
+		CreateAccount: { screen: CreateAccountScreen },
+		CreateAccountSccess: { screen: CreateAccountSccessScreen }
 	},
 	{
 		headerMode: Platform.OS === 'ios' ? 'float' : 'screen',
