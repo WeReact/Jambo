@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { iPhoneSize } from '../../Lib/Utils';
-import { Colors } from '../../Themes';
+import { Colors, Metrics } from '../../Themes';
+
+const { createAccountScreenMetrics } = Metrics;
 
 let headingTextSize = 30;
 if (iPhoneSize() === 'small') {
@@ -73,11 +75,10 @@ const styles = StyleSheet.create({
 		marginRight: 20
 	},
 	wrapperButton: {
+		...createAccountScreenMetrics.wrapperButton,
 		flex: 1,
 		alignItems: 'flex-end',
-		justifyContent: 'center',
-		marginRight: 20,
-		marginBottom: 20
+		justifyContent: 'center'
 	},
 	createButton: {
 		width: 140,

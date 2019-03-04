@@ -912,8 +912,8 @@ buttonComponentMetrics
 		}
 	},
 	/**
-flashcardComponentMetrics
-*/
+	flashcardComponentMetrics
+	*/
 	flashcardComponentMetrics: {
 		questionsContainer: {
 			...Platform.select({
@@ -924,6 +924,22 @@ flashcardComponentMetrics
 					marginBottom: size(0)
 				}
 			})
+		}
+	},
+	/**
+	createAccountScreenMetrics
+	*/
+	createAccountScreenMetrics: {
+		wrapperButton: {
+			...Platform.select({
+				ios: {
+					marginBottom: DeviceInfo.hasNotch() ? size(40) : size(20)
+				},
+				android: {
+					marginBottom: size(20)
+				}
+			}),
+			marginRight: 20
 		}
 	}
 };
