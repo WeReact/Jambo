@@ -307,13 +307,12 @@ class CreateAccountScreen extends Component {
 		const notificationMarginTop = showNotification ? 10 : 0;
 		const doubleCheck =
 			!name ||
-			!birth ||
+			// !birth ||
 			!city ||
 			!cityState ||
 			!phone ||
 			!emailAddress ||
-			!password ||
-			(!profession && (!isStudent || !isFormed))
+			!password
 				? true
 				: false;
 		return (
@@ -341,6 +340,8 @@ class CreateAccountScreen extends Component {
 						{this._handleProfession()}
 						<InputField
 							labelText="Data de nascimento"
+							placeholder={'DD/MM/YYYY'}
+							placeholderTextColor={Colors.white}
 							labelTextSize={14}
 							labelColor={Colors.white}
 							textColor={Colors.white}
@@ -351,6 +352,7 @@ class CreateAccountScreen extends Component {
 									birth: value
 								})
 							}
+							maxLength={10}
 							returnKeyType={'done'}
 							autoCapitalize={'none'}
 							keyboardType={'number-pad'}
@@ -391,6 +393,8 @@ class CreateAccountScreen extends Component {
 						/>
 						<InputField
 							labelText="Telefone *"
+							placeholder={'(81) 9 8888-8888'}
+							placeholderTextColor={Colors.white}
 							labelTextSize={14}
 							labelColor={Colors.white}
 							textColor={Colors.white}
@@ -401,9 +405,10 @@ class CreateAccountScreen extends Component {
 									phone: value
 								})
 							}
+							maxLength={16}
 							returnKeyType={'done'}
 							autoCapitalize={'none'}
-							keyboardType={'number-pad'}
+							keyboardType={'phone-pad'}
 							inputType={'phone'}
 							showCheckmark={false}
 						/>
@@ -417,6 +422,7 @@ class CreateAccountScreen extends Component {
 							customStyle={{ marginBottom: 30 }}
 							onChangeText={this.handleEmailChange}
 							showCheckmark={validEmail}
+							keyboardType={'email-address'}
 							returnKeyType={'next'}
 							autoComplete={'email'}
 							autoCapitalize={'none'}

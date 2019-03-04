@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import { Colors } from '../../../Themes/';
 
+import VMasker from 'vanilla-masker';
+
 export default class InputField extends Component {
 	constructor(props) {
 		super(props);
@@ -46,6 +48,58 @@ export default class InputField extends Component {
 		this.setState({ inputValue: text });
 	}
 
+	/**
+	 * handle to choose the Input mask
+	 * @author samuelmataraso
+	 * @method _handleChooseInputMask
+	 * @param {string} selecteditem
+	 * @return function
+	 */
+	_handleChooseInputMask = (value, maskType) => {
+		switch (maskType) {
+			case 'date':
+				return this._handleDateInputMask(value);
+				break;
+			case 'phone':
+				return this._handlePhoneInputMask(value);
+				break;
+			default:
+				return null;
+		}
+	};
+
+	/**
+	 * handle the Date input mask type
+	 * @author samuelmataraso
+	 * @method _handleDateInputMask
+	 * @param {string} value
+	 * @param {string} input
+	 * @return state
+	 */
+	_handleDateInputMask = value => {
+		let dateInput = value;
+		dateInput = VMasker.toPattern(dateInput, '99/99/9999');
+		this.props.onChangeText(dateInput);
+		this.setState({
+			inputValue: dateInput
+		});
+	};
+	/**
+	 * handle the Phone input mask type
+	 * @author samuelmataraso
+	 * @method _handlePhoneInputMask
+	 * @param {string} value
+	 * @return state
+	 */
+	_handlePhoneInputMask = value => {
+		let phoneInput = value;
+		phoneInput = VMasker.toPattern(phoneInput, '(99) 9 9999-9999');
+		this.props.onChangeText(phoneInput);
+		this.setState({
+			inputValue: phoneInput
+		});
+	};
+
 	render() {
 		const {
 			labelText,
@@ -64,7 +118,10 @@ export default class InputField extends Component {
 			placeholder,
 			defaultValue,
 			returnKeyType,
-			autoComplete
+			autoComplete,
+			placeholderTextColor,
+			keyboardType,
+			maxLength
 		} = this.props;
 		const { secureInput, scaleCheckmarkValue, inputValue } = this.state;
 		const fontSize = labelTextSize || 14;
@@ -72,7 +129,7 @@ export default class InputField extends Component {
 		const color = labelColor || Colors.white;
 		const inputColor = textColor || Colors.white;
 		const borderBottom = borderBottomColor || 'transparent';
-		const keyboardType = inputType === 'email' ? 'email-address' : 'default';
+		// const keyboardType = inputType === 'email' ? 'email-address' : 'default';
 		const customInputStyle = inputStyle || {};
 		if (!inputStyle || (inputStyle && !inputStyle.paddingBottom)) {
 			customInputStyle.paddingBottom = 5;
@@ -86,50 +143,103 @@ export default class InputField extends Component {
 		const scaleValue = showCheckmark ? 1 : 0;
 		this.scaleCheckmark(scaleValue);
 
-		return (
-			<View style={[customStyle, styles.wrapper]}>
-				<Text style={[{ fontWeight, color, fontSize }, styles.label]}>
-					{labelText}
-				</Text>
-				{inputType === 'password' ? (
-					<TouchableOpacity
-						style={styles.showButton}
-						onPress={this.toggleShowPassword}
+		if (inputType === 'date' || inputType === 'phone') {
+			return (
+				<View style={[customStyle, styles.wrapper]}>
+					<Text style={[{ fontWeight, color, fontSize }, styles.label]}>
+						{labelText}
+					</Text>
+					{inputType === 'password' ? (
+						<TouchableOpacity
+							style={styles.showButton}
+							onPress={this.toggleShowPassword}
+						>
+							<Text style={styles.showButtonText}>
+								{secureInput ? 'Mostrar' : 'Esconder'}
+							</Text>
+						</TouchableOpacity>
+					) : null}
+					<Animated.View
+						style={[
+							{ transform: [{ scale: iconScale }] },
+							styles.checkmarkWrapper
+						]}
 					>
-						<Text style={styles.showButtonText}>
-							{secureInput ? 'Mostrar' : 'Esconder'}
-						</Text>
-					</TouchableOpacity>
-				) : null}
-				<Animated.View
-					style={[
-						{ transform: [{ scale: iconScale }] },
-						styles.checkmarkWrapper
-					]}
-				>
-					<Icon name="check" color={Colors.white} size={20} />
-				</Animated.View>
-				<TextInput
-					style={[
-						{ color: inputColor, borderBottomColor: borderBottom },
-						inputStyle,
-						styles.inputField
-					]}
-					secureTextEntry={secureInput}
-					onChangeText={this.onChangeText}
-					keyboardType={keyboardType}
-					autoFocus={autoFocus}
-					autoCapitalize={autoCapitalize}
-					autoCorrect={false}
-					underlineColorAndroid="transparent"
-					placeholder={placeholder}
-					defaultValue={inputValue}
-					value={inputValue}
-					returnKeyType={returnKeyType}
-					autoComplete={autoComplete}
-				/>
-			</View>
-		);
+						<Icon name="check" color={Colors.white} size={20} />
+					</Animated.View>
+					<TextInput
+						style={[
+							{ color: inputColor, borderBottomColor: borderBottom },
+							inputStyle,
+							styles.inputField
+						]}
+						secureTextEntry={secureInput}
+						onChangeText={inputValue =>
+							this._handleChooseInputMask(inputValue, inputType)
+						}
+						maxLength={maxLength}
+						keyboardType={keyboardType}
+						autoFocus={autoFocus}
+						autoCapitalize={autoCapitalize}
+						autoCorrect={false}
+						underlineColorAndroid="transparent"
+						placeholder={placeholder}
+						placeholderTextColor={placeholderTextColor}
+						defaultValue={inputValue}
+						value={inputValue}
+						returnKeyType={returnKeyType}
+						autoComplete={autoComplete}
+					/>
+				</View>
+			);
+		} else {
+			return (
+				<View style={[customStyle, styles.wrapper]}>
+					<Text style={[{ fontWeight, color, fontSize }, styles.label]}>
+						{labelText}
+					</Text>
+					{inputType === 'password' ? (
+						<TouchableOpacity
+							style={styles.showButton}
+							onPress={this.toggleShowPassword}
+						>
+							<Text style={styles.showButtonText}>
+								{secureInput ? 'Mostrar' : 'Esconder'}
+							</Text>
+						</TouchableOpacity>
+					) : null}
+					<Animated.View
+						style={[
+							{ transform: [{ scale: iconScale }] },
+							styles.checkmarkWrapper
+						]}
+					>
+						<Icon name="check" color={Colors.white} size={20} />
+					</Animated.View>
+					<TextInput
+						style={[
+							{ color: inputColor, borderBottomColor: borderBottom },
+							inputStyle,
+							styles.inputField
+						]}
+						secureTextEntry={secureInput}
+						onChangeText={this.onChangeText}
+						maxLength={maxLength}
+						keyboardType={keyboardType}
+						autoFocus={autoFocus}
+						autoCapitalize={autoCapitalize}
+						autoCorrect={false}
+						underlineColorAndroid="transparent"
+						placeholder={placeholder}
+						placeholderTextColor={placeholderTextColor}
+						defaultValue={inputValue}
+						value={inputValue}
+						returnKeyType={returnKeyType}
+						autoComplete={autoComplete}
+					/>
+				</View>
+			);
+		}
 	}
 }
 
@@ -147,7 +257,10 @@ InputField.defaultProps = {
 	labelColor: Colors.white,
 	textColor: Colors.white,
 	borderBottomColor: Colors.white,
-	autoCapitalize: 'words'
+	autoCapitalize: 'words',
+	placeholderTextColor: Colors.white,
+	keyboardType: 'default',
+	maxLength: 50
 };
 
 InputField.propTypes = {
@@ -167,7 +280,10 @@ InputField.propTypes = {
 	placeholder: PropTypes.string,
 	defaultValue: PropTypes.string,
 	returnKeyType: PropTypes.string,
-	autoComplete: PropTypes.string
+	autoComplete: PropTypes.string,
+	placeholderTextColor: PropTypes.string,
+	keyboardType: PropTypes.string,
+	maxLength: PropTypes.number
 };
 
 const styles = StyleSheet.create({
